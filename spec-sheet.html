@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Technical spec sheet — Sentry Access 1.4</title>
+    <meta
+      name="description"
+      content="Sentry Access 1.4 technical specification: architecture, Windows kiosk, Axis VAPIX door control, RTSP camera gateway, audit sync, security model, deployment requirements, and limitations."
+    />
+    <meta name="theme-color" content="#04070a" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; img-src 'self' data:; style-src 'self'; script-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'"
+    />
+    <link rel="icon" href="assets/logo.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="assets/styles.css" />
+    <script defer src="assets/config.js"></script>
+    <script defer src="assets/stripe.generated.js"></script>
+    <script defer src="assets/app.js"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="brand" href="index.html" aria-label="Sentry Access home">
+          <img src="assets/logo.svg" alt="" width="38" height="38" />
+          <span>
+            <span class="brand-name">SENTRY</span>
+            <span class="brand-sub">Access control</span>
+          </span>
+        </a>
+        <nav class="nav" aria-label="Main">
+          <a href="index.html#product">Product</a>
+          <a href="index.html#how">How it works</a>
+          <a href="index.html#integrators">Integrators</a>
+          <a href="index.html#pricing">Pricing</a>
+          <a href="index.html#security">Security</a>
+          <a href="index.html#faq">FAQ</a>
+        </nav>
+        <div class="header-actions">
+          <a class="btn btn-ghost btn-sm" href="index.html">Back to site</a>
+          <a class="btn btn-primary btn-sm" href="mailto:sales@your-company.com?subject=Sentry%20Access%20pilot" data-checkout="pilot">Book a pilot</a>
+          <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-nav">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </div>
+      <div class="mobile-nav" id="mobile-nav">
+        <div class="container mobile-nav-inner">
+          <a href="index.html#product">Product</a>
+          <a href="index.html#pricing">Pricing</a>
+          <a href="index.html#security">Security</a>
+          <a href="index.html#faq">FAQ</a>
+          <a class="btn btn-primary" href="mailto:sales@your-company.com?subject=Sentry%20Access%20pilot" data-checkout="pilot">Book a pilot</a>
+        </div>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="page-hero">
+        <div class="container">
+          <p class="eyebrow">Technical documentation</p>
+          <h1>Sentry Access 1.4 — spec sheet</h1>
+          <p>
+            Deployment architecture, hardware requirements, security model, and
+            current limitations. Prepared for security integrators, MSSPs, and
+            client technical reviewers.
+          </p>
+          <p class="meta">Document revision 1.4 · November 2026 · Print or save as PDF</p>
+          <div class="spec-actions no-print">
+            <button class="btn btn-primary btn-sm" type="button" data-print>
+              Print / save as PDF
+            </button>
+            <a class="btn btn-ghost btn-sm" href="index.html#pricing">Pricing</a>
+            <a class="btn btn-quiet btn-sm" href="mailto:sales@your-company.com?subject=Sentry%20Access%20technical%20review" data-contact="technical-review">Ask a technical question</a>
+          </div>
+        </div>
+      </section>
+
+      <div class="container">
+        <article class="spec-sheet">
+          <h2>1. Intended use</h2>
+          <p>
+            Sentry Access is a local-first biometric access-control application
+            for commercial single-site deployments. It performs 1:N face
+            verification at a Windows kiosk, evaluates local access policy, and
+            pulses a door relay only after identity and policy both pass. An
+            optional RTSP camera gateway logs observations of already-enrolled
+            identities, and an optional LAN hub consolidates identity and audit
+            data for an iPhone companion.
+          </p>
+          <p>
+            It is not a certified life-safety system, an emergency-egress
+            product, or a substitute for code-compliant door hardware. It is
+            also not a general-purpose surveillance or people-tracking platform.
+          </p>
+
+          <h2>2. System architecture</h2>
+          <table class="spec-table">
+            <tbody>
+              <tr><th>Kiosk host</th><td>Windows 10 or 11, x64. Electron desktop application with an isolated renderer and constrained preload bridge.</td></tr>
+              <tr><th>Face engine</th><td>Local SSD face detector, 68-point landmarks, FaceNet 128-dimensional descriptor. Matching runs on the kiosk.</td></tr>
+              <tr><th>Template storage</th><td>AES-GCM encrypted templates in local application storage. Master key protected by the Windows OS keystore (DPAPI through Electron <span class="mono">safeStorage</span>).</td></tr>
+              <tr><th>Door control</th><td>Electron main process driver. Axis VAPIX I/O port management or generic HTTP relay. Credentials in the OS keystore.</td></tr>
+              <tr><th>Camera gateway</th><td>Bundled FFmpeg decodes RTSP/RTSPS/HTTP streams to JPEG frames for local face matching. No frame storage.</td></tr>
+              <tr><th>Local audit</th><td>IndexedDB on the kiosk; CSV export; optional sync queue with retry.</td></tr>
+              <tr><th>Hub (optional)</th><td>Fastify API + PostgreSQL on the customer LAN. Device registration, signed identity bundles, delta sync, audit ingestion, mobile pairing, mDNS discovery.</td></tr>
+              <tr><th>Companion (optional)</th><td>iOS app, read-only audit and kiosk inventory. Keychain token, SQLite cache, Face ID lock.</td></tr>
+            </tbody>
+          </table>
+
+          <h2>3. Identity and biometrics</h2>
+          <ul>
+            <li>Enrollment captures a live face sample, applies a quality gate, and stores a 128-float descriptor encrypted with AES-GCM.</li>
+            <li>Verification runs 1:N against locally hydrated templates. The default Euclidean distance threshold is 0.50 and is configurable.</li>
+            <li>Liveness uses a random blink or head-turn challenge. This is a basic gate, not certified presentation-attack detection.</li>
+            <li>Roles are directory metadata: Employee, Contractor, Visitor, Administrator. Door rules can require specific roles.</li>
+            <li>No raw images or video are retained by the kiosk. The audit record contains identity metadata, decision, score, door or camera label, and timestamps.</li>
+            <li>Unknown faces are not identified or logged by the camera gateway.</li>
+          </ul>
+
+          <h2>4. Door control</h2>
+          <table class="spec-table">
+            <tbody>
+              <tr><th>Axis controllers</th><td>AXIS A1210, A1601, A1610 class network door controllers with AXIS OS 9.70 or later and the I/O port management API.</td></tr>
+              <tr><th>Authentication</th><td>HTTP Basic or Digest. Use a dedicated operator account with the minimum privileges required for I/O control.</td></tr>
+              <tr><th>Relay behavior</th><td>Configurable I/O port, 1–30 second pulse, active state open or closed. Default sequence: active for N seconds, then idle.</td></tr>
+              <tr><th>Generic relay</th><td>HTTP POST with a JSON body containing door ID, name, port, and unlock seconds. Optional Basic or Digest authentication.</td></tr>
+              <tr><th>Policy</th><td>Weekly windows, multiple windows, overnight windows, holidays, allowed roles, and a kiosk door binding. Missing or invalid policy fails closed.</td></tr>
+              <tr><th>Manual override</th><td>Available from the Doors page for commissioning. Bypasses role and schedule checks and is written to audit as a door command.</td></tr>
+              <tr><th>Not included</th><td>REX/door-position supervision, held/forced-door alarms, anti-passback, two-person rule, interlock, elevator control, and fire-release integration.</td></tr>
+            </tbody>
+          </table>
+
+          <h2>5. Camera gateway</h2>
+          <ul>
+            <li>Inputs: RTSP, RTSPS, HTTP MJPEG, and NVR channel URLs. FFmpeg is bundled with the installer.</li>
+            <li>Sampling: 2 frames per second per camera at a configurable working width (default 960 px).</li>
+            <li>Recognition: single-face detection per sampled frame, matched against enrolled templates.</li>
+            <li>Logging: matched enrolled identities only, with a 60-second per-camera/per-identity cooldown.</li>
+            <li>Background mode: closing the window minimizes to the system tray while cameras are active.</li>
+            <li>Not included: automatic ONVIF discovery, continuous recording, live view, PTZ, audio, LPR, and Ring.</li>
+          </ul>
+
+          <h2>6. Audit, sync, and mobile</h2>
+          <ul>
+            <li>Event types: access decision, camera observation, and manual door command.</li>
+            <li>Fields include identity, employee ID, role, decision, confidence, distance, threshold, reason, provider, camera/door labels, and timestamps.</li>
+            <li>Hub events are stored in PostgreSQL and exposed to the site-scoped mobile API.</li>
+            <li>Identity sync uses ECDSA-signed bundles. Device authentication uses a bearer token; per-event device signatures and hash-chaining are not yet implemented.</li>
+            <li>The iOS companion is read-only and does not perform recognition or ingest camera streams.</li>
+            <li>CSV export is available from the desktop audit view.</li>
+          </ul>
+
+          <h2>7. Security model</h2>
+          <ul>
+            <li>Renderer Node integration is disabled; context isolation and Chromium sandboxing are enabled.</li>
+            <li>The app is served through a private custom protocol with a production CSP. External navigation is blocked.</li>
+            <li>Biometric templates and credentials are encrypted at rest. The raw master key never enters the renderer.</li>
+            <li>Controller, camera, and sync credentials are excluded from audit payloads and mobile data.</li>
+            <li>Door decisions are made locally and fail closed on controller error or policy failure.</li>
+            <li>The installer is currently unsigned. Code signing, secure auto-update, operator accounts/RBAC, and per-event signing remain on the roadmap.</li>
+          </ul>
+
+          <h2>8. Deployment requirements</h2>
+          <table class="spec-table">
+            <tbody>
+              <tr><th>Kiosk</th><td>Windows 10/11 x64, 8 GB RAM minimum, 16 GB recommended, SSD, webcam, stable power. Wired Ethernet recommended.</td></tr>
+              <tr><th>Network</th><td>Kiosk must reach the Axis controller and camera/NVR streams. Prefer an isolated camera VLAN and a read-only camera account.</td></tr>
+              <tr><th>Door hardware</th><td>Fail-safe strike, independent request-to-exit, door position sensor (recommended), fire-alarm release, and adequate power/UPS.</td></tr>
+              <tr><th>Hub</th><td>Always-on Windows or Linux host with PostgreSQL. Backups stored on encrypted media.</td></tr>
+              <tr><th>Mobile</th><td>iPhone with a signed Sentry Companion build. Pairing requires the hub on the same network or a reachable hub URL.</td></tr>
+            </tbody>
+          </table>
+
+          <h2>9. Commissioning checklist</h2>
+          <ul>
+            <li>Confirm written authorization for the cameras and biometric deployment.</li>
+            <li>Verify controller credentials with the built-in test and confirm the port is an output.</li>
+            <li>Test an authorized role, an unauthorized role, a closed schedule, and a holiday.</li>
+            <li>Disconnect the controller and confirm the decision is denied and audited.</li>
+            <li>Confirm mechanical egress works with the software powered off.</li>
+            <li>Pair the iPhone, verify audit delivery, then export a CSV and take a hub backup.</li>
+            <li>Record the site’s retention period, consent process, and deletion request procedure.</li>
+          </ul>
+
+          <h2>10. Current limitations</h2>
+          <ul>
+            <li>Not certified to UL, EN, SOC 2, ISO 27001, or any access-control standard.</li>
+            <li>Axis integration has been validated against a simulated VAPIX endpoint, not yet a physical controller in this build.</li>
+            <li>No REX/door-position supervision, held/forced-door alarms, anti-passback, two-person rule, or interlock.</li>
+            <li>Manual unlock is not bound to an authenticated operator identity.</li>
+            <li>No automatic ONVIF discovery, Ring support, live view, recording, PTZ, audio, or license-plate recognition.</li>
+            <li>Basic challenge-response liveness; no certified PAD or anti-spoofing.</li>
+            <li>No server admin UI, RBAC, mobile-token revocation UI, rate limiting, or immutable audit log.</li>
+            <li>Windows installer unsigned; iOS distribution requires an Apple signing identity.</li>
+            <li>Biometric consent, signage, retention, DPIA, and deletion obligations remain with the deploying organization.</li>
+          </ul>
+
+          <h2>11. Licensing and support</h2>
+          <p>
+            Licensing is per site, not per user. The paid pilot includes remote
+            commissioning and a written report and is credited toward a
+            single-site license. The single-site license includes 12 months of
+            updates and email support. Annual support renews the update and
+            support term. Hardware, installation, travel, and taxes are
+            separate.
+          </p>
+          <p>
+            Current pricing is published at
+            <a class="mint" href="index.html#pricing">the pricing section</a>.
+            Multi-site and 10+ door terms are quoted directly.
+          </p>
+
+          <h2>12. Contact</h2>
+          <p>
+            Sales and technical review:
+            <a class="mint" href="mailto:sales@your-company.com" data-config="email-href"><span data-config="email">sales@your-company.com</span></a>.
+            Include site count, door count, camera count, controller model, and
+            target timeline.
+          </p>
+          <p class="dim">
+            Sentry Access is a product of <span data-config="legal-entity">Sentry Access</span>.
+            This document is descriptive, not a warranty. See the
+            <a class="mint" href="terms.html">terms of sale</a> and
+            <a class="mint" href="privacy.html">privacy policy</a>.
+          </p>
+        </article>
+      </div>
+    </main>
+
+    <footer class="site-footer no-print">
+      <div class="container">
+        <div class="footer-bottom">
+          <span>© <span data-year>2026</span> <span data-config="legal-entity">Sentry Access</span></span>
+          <span class="status">Document revision 1.4</span>
+          <span><a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a></span>
+        </div>
+      </div>
+    </footer>
+
+    <dialog id="contact-dialog" aria-labelledby="dialog-title">
+      <div class="dialog-head">
+        <div>
+          <h3 id="dialog-title">Talk to the deployment team</h3>
+          <p>Technical review, integrator terms, or pilot scoping.</p>
+        </div>
+        <button class="dialog-close" type="button" aria-label="Close" data-dialog-close>
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="dialog-body">
+        <div class="dialog-plan">
+          <span data-dialog-plan>Technical review</span>
+          <strong data-dialog-price></strong>
+        </div>
+        <p data-dialog-blurb></p>
+        <div class="dialog-actions">
+          <a class="btn btn-primary" href="mailto:sales@your-company.com" data-dialog-email>Email the team</a>
+          <button class="btn btn-ghost" type="button" data-dialog-copy>Copy email</button>
+          <a class="btn btn-quiet" href="index.html" data-dialog-close>Back</a>
+        </div>
+        <p class="copy-note" data-dialog-note></p>
+      </div>
+    </dialog>
+  </body>
+</html>

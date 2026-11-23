@@ -1,0 +1,264 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Privacy policy — Sentry Access</title>
+    <meta
+      name="description"
+      content="How Sentry Access handles website, sales, and deployment data, including the biometric and camera data boundary."
+    />
+    <meta name="theme-color" content="#04070a" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; img-src 'self' data:; style-src 'self'; script-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'"
+    />
+    <link rel="icon" href="assets/logo.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="assets/styles.css" />
+    <script defer src="assets/config.js"></script>
+    <script defer src="assets/stripe.generated.js"></script>
+    <script defer src="assets/app.js"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="brand" href="index.html" aria-label="Sentry Access home">
+          <img src="assets/logo.svg" alt="" width="38" height="38" />
+          <span><span class="brand-name">SENTRY</span><span class="brand-sub">Access control</span></span>
+        </a>
+        <nav class="nav" aria-label="Main">
+          <a href="index.html#product">Product</a>
+          <a href="index.html#pricing">Pricing</a>
+          <a href="index.html#security">Security</a>
+          <a href="spec-sheet.html">Spec sheet</a>
+        </nav>
+        <div class="header-actions">
+          <a class="btn btn-ghost btn-sm" href="index.html">Back to site</a>
+          <a class="btn btn-primary btn-sm" href="mailto:sales@your-company.com" data-config="email-href">Contact</a>
+        </div>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="page-hero">
+        <div class="container">
+          <p class="eyebrow">Legal</p>
+          <h1>Privacy policy</h1>
+          <p>
+            This policy explains what <span data-config="legal-entity">Sentry Access</span>
+            collects through this website, how sales inquiries are handled, and
+            where biometric and camera data actually live.
+          </p>
+          <p class="meta">Effective: November 23, 2026 · Last updated: November 23, 2026</p>
+        </div>
+      </section>
+
+      <div class="container">
+        <article class="legal">
+          <div class="notice">
+            <strong>Review before publishing.</strong> This is a working draft,
+            not legal advice. Replace the legal entity, address, jurisdiction,
+            and contact details, and have qualified counsel review it before you
+            accept payments or process personal data.
+          </div>
+
+          <h2>1. Who we are</h2>
+          <p>
+            <span data-config="legal-entity">Sentry Access</span> (“Sentry
+            Access”, “we”, “us”) sells local-first biometric access-control
+            software and related deployment services. Our contact address for
+            privacy questions is
+            <a class="mint" href="mailto:sales@your-company.com" data-config="email-href"><span data-config="email">sales@your-company.com</span></a>.
+          </p>
+          <p>
+            Postal address: <strong>[Insert registered business address]</strong>.
+          </p>
+
+          <h2>2. Scope</h2>
+          <p>
+            This policy covers this marketing website and our sales and support
+            communications. It does not govern the biometric data processed by a
+            customer’s installed Sentry Access deployment. That deployment runs on
+            infrastructure controlled by the customer, who is normally the data
+            controller for its employees, contractors, and visitors.
+          </p>
+
+          <h2>3. What this website collects</h2>
+          <h3>3.1 No accounts, analytics, or advertising cookies</h3>
+          <p>
+            This website does not provide user accounts, run third-party
+            analytics, or set advertising cookies. The site is hosted on GitHub
+            Pages, which may process IP addresses, user-agent strings, and
+            request metadata in standard server logs under GitHub’s privacy
+            statement. We do not receive those logs.
+          </p>
+
+          <h3>3.2 Checkout</h3>
+          <p>
+            Paid pilots, licenses, and support are sold through Stripe. When you
+            select a purchase option, you are redirected to a Stripe-hosted
+            checkout page. Stripe collects payment, billing, and contact details
+            under its own privacy policy. We receive the information needed to
+            fulfill the order, such as your name, email, company, billing
+            country, and order status. We do not receive or store full payment
+            card numbers.
+          </p>
+
+          <h3>3.3 Sales and support communications</h3>
+          <p>
+            If you email us or request a deployment call, we collect the
+            information you provide: name, work email, company, role, site and
+            hardware details, and the content of the conversation. We use it to
+            respond, scope the deployment, and maintain a record of the
+            commercial relationship.
+          </p>
+
+          <h3>3.4 Optional scheduling</h3>
+          <p>
+            If a scheduling link is enabled, the scheduling provider processes
+            your name, email, and meeting details under its own policy. The
+            provider is identified on the scheduling page before you book.
+          </p>
+
+          <h2>4. Biometric and camera data boundary</h2>
+          <p>
+            Sentry Access is designed so that biometric templates and camera
+            frames remain on the customer’s local network. In a normal
+            deployment:
+          </p>
+          <ul>
+            <li>Face templates are encrypted and stored on the kiosk.</li>
+            <li>Matching and liveness checks run locally.</li>
+            <li>Camera frames are decoded in memory and are not retained or uploaded.</li>
+            <li>Camera observations are limited to already-enrolled identities.</li>
+            <li>The optional hub stores identity metadata, audit events, and encrypted templates on the customer’s own infrastructure.</li>
+          </ul>
+          <p>
+            We do not receive biometric templates, raw camera frames, or the
+            customer’s audit database unless the customer deliberately shares a
+            diagnostic export with us. If we are engaged to provide remote
+            support, we may see screen-shared configuration or log excerpts; we
+            ask customers to redact biometric and personal data before sharing.
+          </p>
+          <p>
+            The deploying organization is responsible for providing notice,
+            obtaining any required consent, setting retention periods, honoring
+            access and deletion requests, and completing any required data
+            protection impact assessment. Biometric data may be “sensitive” or
+            “special category” data under laws such as Illinois BIPA, GDPR, and
+            comparable state statutes.
+          </p>
+
+          <h2>5. How we use information</h2>
+          <ul>
+            <li>To respond to sales, technical, and support inquiries.</li>
+            <li>To scope and deliver pilots, licenses, and support.</li>
+            <li>To process payments, invoices, refunds, and tax obligations.</li>
+            <li>To maintain business records and prevent fraud or abuse.</li>
+            <li>To comply with legal obligations and enforce our terms.</li>
+            <li>To improve the product using aggregated, non-identifying feedback.</li>
+          </ul>
+
+          <h2>6. Legal bases (where GDPR applies)</h2>
+          <ul>
+            <li><strong>Contract:</strong> to deliver a pilot, license, or support you requested.</li>
+            <li><strong>Legitimate interests:</strong> to respond to business inquiries, secure the site, and manage the commercial relationship.</li>
+            <li><strong>Legal obligation:</strong> to keep tax, accounting, and compliance records.</li>
+            <li><strong>Consent:</strong> where we explicitly ask for it, such as optional marketing follow-up. You can withdraw consent at any time.</li>
+          </ul>
+
+          <h2>7. Sharing and subprocessors</h2>
+          <p>
+            We do not sell personal information. We share it only with service
+            providers that help us operate the business, under appropriate
+            contractual terms:
+          </p>
+          <ul>
+            <li><strong>GitHub Pages</strong> — website hosting.</li>
+            <li><strong>Stripe</strong> — checkout, payment processing, receipts, and tax calculation where enabled.</li>
+            <li><strong>Email and scheduling providers</strong> — sales and support communications, when configured.</li>
+            <li><strong>Professional advisers</strong> — legal, accounting, and insurance providers under confidentiality obligations.</li>
+            <li><strong>Authorities</strong> — where required by law or to protect rights and safety.</li>
+          </ul>
+
+          <h2>8. International transfers</h2>
+          <p>
+            Our service providers may process data in the United States and
+            other countries. Where required, we rely on appropriate safeguards
+            such as standard contractual clauses or an equivalent mechanism. The
+            customer’s on-site deployment does not transfer biometric data to us
+            by default.
+          </p>
+
+          <h2>9. Retention</h2>
+          <p>
+            Sales inquiries are retained for as long as needed to evaluate and
+            support the relationship, then archived or deleted according to
+            business and legal requirements. Payment and tax records are retained
+            for the period required by applicable law. Support diagnostics are
+            retained only as long as needed to resolve the issue, unless a longer
+            period is agreed.
+          </p>
+
+          <h2>10. Security</h2>
+          <p>
+            We use access controls, encrypted storage, and least-privilege
+            service accounts for business systems. No method of transmission or
+            storage is completely secure. Report a suspected issue to
+            <a class="mint" href="mailto:sales@your-company.com" data-config="email-href"><span data-config="email">sales@your-company.com</span></a>
+            with the subject “Security report”.
+          </p>
+
+          <h2>11. Your rights</h2>
+          <p>
+            Depending on your location, you may have the right to access,
+            correct, delete, restrict, or port your personal information, to
+            object to processing, or to withdraw consent. You may also have the
+            right to complain to a supervisory authority. Send requests to
+            <a class="mint" href="mailto:sales@your-company.com" data-config="email-href"><span data-config="email">sales@your-company.com</span></a>.
+            We may need to verify your identity and may retain records required
+            by law.
+          </p>
+          <p>
+            California residents may request information about categories of
+            personal information collected and disclosed. We do not sell or share
+            personal information for cross-context behavioral advertising.
+          </p>
+
+          <h2>12. Children</h2>
+          <p>
+            This is a business product and website. It is not directed to
+            children, and we do not knowingly collect personal information from
+            children.
+          </p>
+
+          <h2>13. Changes</h2>
+          <p>
+            We may update this policy to reflect changes in the product, law, or
+            our providers. The effective date at the top will change, and
+            material updates will be posted on this page.
+          </p>
+
+          <h2>14. Contact</h2>
+          <p>
+            Privacy questions and requests:
+            <a class="mint" href="mailto:sales@your-company.com" data-config="email-href"><span data-config="email">sales@your-company.com</span></a>.
+          </p>
+        </article>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <div class="footer-bottom">
+          <span>© <span data-year>2026</span> <span data-config="legal-entity">Sentry Access</span></span>
+          <span class="status">Local-first by design</span>
+          <span><a href="terms.html">Terms</a> · <a href="spec-sheet.html">Spec sheet</a> · <a href="index.html">Home</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# Replace with your production URL after GitHub Pages is enabled.
+# Sitemap: https://<org>.github.io/<repo>/sitemap.xml
