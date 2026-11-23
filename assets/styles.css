@@ -1917,3 +1917,635 @@ dialog::backdrop {
     text-decoration: none;
   }
 }
+
+/* ==========================================================================
+   Bright theme
+   Light surfaces, dark ink, emerald/cyan accents. Keeps the security feel
+   without the near-black canvas.
+   ========================================================================== */
+
+:root {
+  color-scheme: light;
+  --bg: #f5f8fb;
+  --bg-2: #eef4f9;
+  --panel: #ffffff;
+  --panel-2: #f8fafc;
+  --line: rgba(15, 23, 42, 0.1);
+  --line-strong: rgba(15, 23, 42, 0.18);
+  --text: #0f172a;
+  --muted: #475569;
+  --dim: #64748b;
+  --mint: #059669;
+  --mint-bright: #047857;
+  --cyan: #0e7490;
+  --amber: #b45309;
+  --rose: #be123c;
+}
+
+body {
+  background: #f5f8fb;
+  color: var(--text);
+}
+
+body::before {
+  background:
+    radial-gradient(900px 500px at 12% -8%, rgba(5, 150, 105, 0.11), transparent 65%),
+    radial-gradient(800px 480px at 92% 0%, rgba(8, 145, 178, 0.08), transparent 62%),
+    linear-gradient(180deg, #f8fbfd 0%, #f5f8fb 45%, #eef4f9 100%);
+}
+
+body::after {
+  background-image:
+    linear-gradient(rgba(15, 23, 42, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(15, 23, 42, 0.04) 1px, transparent 1px);
+  mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.55), transparent 78%);
+}
+
+.eyebrow {
+  color: #047857;
+}
+
+.eyebrow::before {
+  background: linear-gradient(90deg, #059669, transparent);
+}
+
+.hero-copy h1 em {
+  background: linear-gradient(115deg, #047857, #059669 46%, #0e7490);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.lead,
+.section-head .lead {
+  color: #475569;
+}
+
+.hero-note,
+.hero-points li {
+  color: #64748b;
+}
+
+.hero-points li::before {
+  background: #059669;
+  box-shadow: 0 0 10px rgba(5, 150, 105, 0.5);
+}
+
+/* Header and navigation */
+
+.site-header {
+  background: rgba(248, 251, 253, 0.78);
+  border-bottom-color: transparent;
+}
+
+.site-header.is-scrolled {
+  background: rgba(255, 255, 255, 0.94);
+  border-color: var(--line);
+}
+
+.nav a {
+  color: #475569;
+}
+
+.nav a:hover {
+  color: #0f172a;
+  background: rgba(15, 23, 42, 0.045);
+}
+
+.nav-toggle {
+  background: #ffffff;
+  border-color: var(--line);
+}
+
+.nav-toggle span {
+  background: #0f172a;
+}
+
+.mobile-nav {
+  background: rgba(255, 255, 255, 0.98);
+  border-top-color: var(--line);
+}
+
+.mobile-nav a {
+  color: #475569;
+}
+
+.mobile-nav a:hover {
+  background: rgba(15, 23, 42, 0.045);
+  color: #0f172a;
+}
+
+/* Buttons */
+
+.btn {
+  color: #0f172a;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #6ee7b7, #34d399 55%, #22d3ee);
+  color: #052e22;
+  box-shadow: 0 12px 30px -14px rgba(5, 150, 105, 0.6);
+}
+
+.btn-primary:hover {
+  box-shadow: 0 18px 38px -16px rgba(5, 150, 105, 0.72);
+}
+
+.btn-ghost {
+  background: #ffffff;
+  border-color: var(--line-strong);
+  color: #0f172a;
+}
+
+.btn-ghost:hover {
+  background: #f8fafc;
+  border-color: rgba(15, 23, 42, 0.28);
+}
+
+.btn-quiet {
+  color: #475569;
+}
+
+.btn-quiet:hover {
+  color: #0f172a;
+}
+
+/* Console / product mockup */
+
+.console {
+  background: #ffffff;
+  border-color: var(--line-strong);
+  box-shadow:
+    0 34px 80px -42px rgba(15, 23, 42, 0.35),
+    0 0 0 1px rgba(5, 150, 105, 0.04) inset,
+    0 0 80px -55px rgba(5, 150, 105, 0.4);
+}
+
+.console::before {
+  background: linear-gradient(
+    150deg,
+    rgba(5, 150, 105, 0.38),
+    transparent 35%,
+    rgba(8, 145, 178, 0.24)
+  );
+}
+
+.console-bar {
+  background: #f8fafc;
+  border-bottom-color: var(--line);
+}
+
+.console-bar i {
+  background: rgba(15, 23, 42, 0.16);
+}
+
+.console-title {
+  color: #64748b;
+}
+
+.console-live {
+  color: #047857;
+}
+
+.console-live::before {
+  background: #059669;
+  box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.13);
+}
+
+.console-body {
+  background: #ffffff;
+}
+
+.console-hero,
+.console-card {
+  background: #f8fafc;
+  border-color: var(--line);
+}
+
+.console-avatar {
+  background: #d1fae5;
+  border-color: #a7f3d0;
+  color: #047857;
+}
+
+.console-person strong {
+  color: #0f172a;
+}
+
+.console-person small {
+  color: #64748b;
+}
+
+.pill {
+  background: #d1fae5;
+  border-color: #a7f3d0;
+  color: #047857;
+}
+
+.pill--cyan {
+  background: #cffafe;
+  border-color: #a5f3fc;
+  color: #0e7490;
+}
+
+.pill--amber {
+  background: #fef3c7;
+  border-color: #fde68a;
+  color: #b45309;
+}
+
+.console-door {
+  background: #ecfeff;
+  border-color: #a5f3fc;
+  color: #0e7490;
+}
+
+.console-door svg,
+.console-door span:last-child {
+  color: #0e7490;
+}
+
+.console-card h4 {
+  color: #64748b;
+}
+
+.console-row {
+  color: #475569;
+}
+
+.console-row + .console-row {
+  border-top-color: rgba(15, 23, 42, 0.08);
+}
+
+.console-row .dot {
+  background: #059669;
+}
+
+.console-row .dot.cyan {
+  background: #0891b2;
+}
+
+.console-row .dot.amber {
+  background: #d97706;
+}
+
+.console-row time {
+  color: #64748b;
+}
+
+.console-row .tag {
+  color: #047857;
+}
+
+.console-row .tag.tag--amber {
+  color: #b45309;
+}
+
+.console-row .tag.tag--cyan {
+  color: #0e7490;
+}
+
+/* Trust strip */
+
+.trust {
+  background: #eef4f9;
+  border-color: var(--line);
+}
+
+.trust-item {
+  color: #475569;
+}
+
+.trust-item svg {
+  color: #059669;
+}
+
+/* Cards, steps, panels */
+
+.card {
+  background: #ffffff;
+  border-color: var(--line);
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
+}
+
+.card:hover {
+  border-color: rgba(5, 150, 105, 0.35);
+  box-shadow: 0 22px 46px -34px rgba(15, 23, 42, 0.28);
+}
+
+.card p {
+  color: #475569;
+}
+
+.card li {
+  color: #64748b;
+}
+
+.card li::before {
+  color: #059669;
+}
+
+.card-icon {
+  background: #ecfdf5;
+  border-color: #a7f3d0;
+  color: #047857;
+}
+
+.card-icon.cyan {
+  background: #ecfeff;
+  border-color: #a5f3fc;
+  color: #0e7490;
+}
+
+.card-icon.amber {
+  background: #fffbeb;
+  border-color: #fde68a;
+  color: #b45309;
+}
+
+.step {
+  background: #ffffff;
+  border-color: var(--line);
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
+}
+
+.step::before {
+  color: #047857;
+}
+
+.step p {
+  color: #475569;
+}
+
+.panel {
+  background: #ffffff;
+  border-color: var(--line);
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
+}
+
+.spec-table th {
+  color: #64748b;
+}
+
+.spec-table td {
+  color: #334155;
+}
+
+.spec-table th,
+.spec-table td {
+  border-bottom-color: var(--line);
+}
+
+/* Privacy / limits band */
+
+.band {
+  background:
+    radial-gradient(700px 300px at 20% 0%, rgba(5, 150, 105, 0.08), transparent 70%),
+    #f8fafc;
+  border-color: var(--line);
+}
+
+.limits li {
+  color: #475569;
+}
+
+.limits li::before {
+  background: #d97706;
+}
+
+/* Pricing */
+
+.price-card {
+  background: #ffffff;
+  border-color: var(--line);
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
+}
+
+.price-card.is-featured {
+  border-color: rgba(5, 150, 105, 0.42);
+  background:
+    radial-gradient(400px 220px at 50% 0%, rgba(5, 150, 105, 0.1), transparent 70%),
+    #ffffff;
+  box-shadow: 0 28px 70px -45px rgba(5, 150, 105, 0.6);
+}
+
+.price-badge {
+  background: #d1fae5;
+  border-color: #a7f3d0;
+  color: #047857;
+}
+
+.price span,
+.price-foot,
+.pricing-note {
+  color: #64748b;
+}
+
+.price-desc,
+.price-list li {
+  color: #475569;
+}
+
+.price-list li::before {
+  color: #059669;
+}
+
+/* Integrator band */
+
+.integrator {
+  border-color: rgba(5, 150, 105, 0.24);
+  background:
+    radial-gradient(500px 300px at 85% 20%, rgba(8, 145, 178, 0.09), transparent 70%),
+    linear-gradient(150deg, #ecfdf5, #f8fafc);
+}
+
+.integrator p {
+  color: #475569;
+}
+
+.mini {
+  background: #ffffff;
+  border-color: var(--line);
+}
+
+.mini strong {
+  color: #0f172a;
+}
+
+.mini span {
+  color: #64748b;
+}
+
+/* FAQ */
+
+.faq details {
+  background: #ffffff;
+  border-color: var(--line);
+}
+
+.faq details[open] {
+  border-color: rgba(5, 150, 105, 0.32);
+  background: #ffffff;
+}
+
+.faq summary {
+  color: #0f172a;
+}
+
+.faq summary::after {
+  color: #059669;
+}
+
+.faq details p {
+  color: #475569;
+}
+
+/* CTA */
+
+.cta {
+  border-color: rgba(5, 150, 105, 0.26);
+  background:
+    radial-gradient(600px 300px at 50% 0%, rgba(5, 150, 105, 0.14), transparent 70%),
+    linear-gradient(180deg, #ffffff, #f0fdfa);
+  box-shadow: 0 30px 80px -55px rgba(5, 150, 105, 0.5);
+}
+
+.cta::before {
+  background-image:
+    linear-gradient(rgba(5, 150, 105, 0.075) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(5, 150, 105, 0.075) 1px, transparent 1px);
+}
+
+.cta p {
+  color: #475569;
+}
+
+.cta-note {
+  color: #64748b;
+}
+
+/* Footer */
+
+.site-footer {
+  background: #eef4f9;
+  border-color: var(--line);
+}
+
+.footer-brand p,
+.footer-col a,
+.footer-bottom {
+  color: #64748b;
+}
+
+.footer-col h4 {
+  color: #475569;
+}
+
+.footer-col a:hover {
+  color: #0f172a;
+}
+
+.footer-bottom .status::before {
+  background: #059669;
+  box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.12);
+}
+
+/* Dialog */
+
+dialog {
+  background: #ffffff;
+  color: #0f172a;
+  border-color: var(--line-strong);
+  box-shadow: 0 40px 120px rgba(15, 23, 42, 0.3);
+}
+
+dialog::backdrop {
+  background: rgba(15, 23, 42, 0.45);
+}
+
+.dialog-head p,
+.dialog-body p,
+.copy-note {
+  color: #475569;
+}
+
+.dialog-close {
+  border-color: var(--line);
+  color: #64748b;
+}
+
+.dialog-close:hover {
+  color: #0f172a;
+  background: #f1f5f9;
+}
+
+.dialog-plan {
+  background: #f8fafc;
+  border-color: var(--line);
+}
+
+.dialog-plan strong {
+  color: #047857;
+}
+
+/* Inner pages and legal */
+
+.page-hero {
+  border-color: var(--line);
+  background: linear-gradient(180deg, rgba(236, 253, 245, 0.7), transparent);
+}
+
+.page-hero p {
+  color: #475569;
+}
+
+.legal h2,
+.legal h3,
+.spec-sheet h2,
+.spec-sheet h3 {
+  color: #0f172a;
+}
+
+.legal p,
+.legal li,
+.spec-sheet p,
+.spec-sheet li {
+  color: #475569;
+}
+
+.legal strong {
+  color: #0f172a;
+}
+
+.legal .notice {
+  border-color: #fde68a;
+  background: #fffbeb;
+  color: #92400e;
+}
+
+.legal .meta {
+  color: #64748b;
+}
+
+.spec-sheet h2 {
+  border-bottom-color: var(--line);
+}
+
+.spec-sheet .spec-table td {
+  color: #334155;
+}
+
+.mint {
+  color: #047857;
+}
+
+.dim {
+  color: #64748b;
+}
+
+/* Selection */
+
+::selection {
+  background: rgba(5, 150, 105, 0.2);
+  color: #0f172a;
+}
