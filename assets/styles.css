@@ -1926,8 +1926,8 @@ dialog::backdrop {
 
 :root {
   color-scheme: light;
-  --bg: #f5f8fb;
-  --bg-2: #eef4f9;
+  --bg: #ffffff;
+  --bg-2: #ffffff;
   --panel: #ffffff;
   --panel-2: #f8fafc;
   --line: rgba(15, 23, 42, 0.1);
@@ -1943,15 +1943,15 @@ dialog::backdrop {
 }
 
 body {
-  background: #f5f8fb;
+  background: #ffffff;
   color: var(--text);
 }
 
 body::before {
   background:
-    radial-gradient(900px 500px at 12% -8%, rgba(5, 150, 105, 0.11), transparent 65%),
-    radial-gradient(800px 480px at 92% 0%, rgba(8, 145, 178, 0.08), transparent 62%),
-    linear-gradient(180deg, #f8fbfd 0%, #f5f8fb 45%, #eef4f9 100%);
+    radial-gradient(900px 500px at 12% -8%, rgba(5, 150, 105, 0.07), transparent 65%),
+    radial-gradient(800px 480px at 92% 0%, rgba(8, 145, 178, 0.05), transparent 62%),
+    linear-gradient(180deg, #ffffff 0%, #ffffff 60%, #fbfdff 100%);
 }
 
 body::after {
@@ -1994,7 +1994,7 @@ body::after {
 /* Header and navigation */
 
 .site-header {
-  background: rgba(248, 251, 253, 0.78);
+  background: rgba(255, 255, 255, 0.82);
   border-bottom-color: transparent;
 }
 
@@ -2208,7 +2208,7 @@ body::after {
 /* Trust strip */
 
 .trust {
-  background: #eef4f9;
+  background: #ffffff;
   border-color: var(--line);
 }
 
@@ -2301,7 +2301,7 @@ body::after {
 .band {
   background:
     radial-gradient(700px 300px at 20% 0%, rgba(5, 150, 105, 0.08), transparent 70%),
-    #f8fafc;
+    #ffffff;
   border-color: var(--line);
 }
 
@@ -2356,7 +2356,7 @@ body::after {
   border-color: rgba(5, 150, 105, 0.24);
   background:
     radial-gradient(500px 300px at 85% 20%, rgba(8, 145, 178, 0.09), transparent 70%),
-    linear-gradient(150deg, #ecfdf5, #f8fafc);
+    linear-gradient(150deg, #f0fdf9, #ffffff);
 }
 
 .integrator p {
@@ -2405,8 +2405,8 @@ body::after {
 .cta {
   border-color: rgba(5, 150, 105, 0.26);
   background:
-    radial-gradient(600px 300px at 50% 0%, rgba(5, 150, 105, 0.14), transparent 70%),
-    linear-gradient(180deg, #ffffff, #f0fdfa);
+    radial-gradient(600px 300px at 50% 0%, rgba(5, 150, 105, 0.09), transparent 70%),
+    linear-gradient(180deg, #ffffff, #fbfffe);
   box-shadow: 0 30px 80px -55px rgba(5, 150, 105, 0.5);
 }
 
@@ -2427,7 +2427,7 @@ body::after {
 /* Footer */
 
 .site-footer {
-  background: #eef4f9;
+  background: #fafbfc;
   border-color: var(--line);
 }
 
@@ -2492,7 +2492,7 @@ dialog::backdrop {
 
 .page-hero {
   border-color: var(--line);
-  background: linear-gradient(180deg, rgba(236, 253, 245, 0.7), transparent);
+  background: linear-gradient(180deg, rgba(236, 253, 245, 0.35), transparent);
 }
 
 .page-hero p {
