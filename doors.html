@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Doors & rules — Sentry Access</title>
+    <meta name="description" content="Sentry Access door control: Axis VAPIX and HTTP relay support, schedules, holidays, role rules, manual unlock, and fail-closed policy." />
+    <meta name="theme-color" content="#ffffff" />
+    <meta name="color-scheme" content="light" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self'; script-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'" />
+    <link rel="icon" href="assets/logo.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="assets/styles.css" />
+    <script defer src="assets/config.js"></script>
+    <script defer src="assets/stripe.generated.js"></script>
+    <script defer src="assets/app.js"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="brand" href="index.html" aria-label="Sentry Access home">
+          <img src="assets/logo.svg" alt="" width="38" height="38" />
+          <span><span class="brand-name">SENTRY</span><span class="brand-sub">Access control</span></span>
+        </a>
+        
+        <nav class="nav" aria-label="Main">
+          <a href="platform.html">Platform</a>
+          <a href="index.html#tour">Tour</a>
+          <a href="index.html#how">How it works</a>
+          <a href="index.html#integrators">Integrators</a>
+          <a href="index.html#pricing">Pricing</a>
+          <a href="index.html#security">Security</a>
+          <a href="index.html#faq">FAQ</a>
+        </nav>
+        <div class="header-actions">
+          <a class="btn btn-ghost btn-sm" href="spec-sheet.html">Spec sheet</a>
+          <a class="btn btn-primary btn-sm" href="index.html#pricing">Buy Pro</a>
+          <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-nav">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </div>
+      
+      <div class="mobile-nav" id="mobile-nav">
+        <div class="container mobile-nav-inner">
+          <a href="platform.html">Platform</a>
+          <a href="index.html#tour">Tour</a>
+          <a href="index.html#how">How it works</a>
+          <a href="index.html#integrators">Integrators</a>
+          <a href="index.html#pricing">Pricing</a>
+          <a href="index.html#security">Security</a>
+          <a href="index.html#faq">FAQ</a>
+          <a href="spec-sheet.html">Spec sheet</a>
+          <a class="btn btn-primary" href="index.html#pricing">Buy Pro</a>
+        </div>
+      </div>
+    </header>
+    <main id="main">
+<section class="product-hero">
+        <div class="container">
+          <div class="breadcrumbs"><a href="index.html">Home</a><span>/</span><a href="platform.html">Platform</a><span>/</span><span>Doors & rules</span></div>
+          <p class="eyebrow">Doors & rules</p>
+          <h1>The decision reaches the strike, not just the screen.</h1>
+          <p class="lead">Pulse an Axis network door controller or a generic HTTP relay only after identity and local policy both pass. Schedules, holidays, roles, and fail-closed behavior run on site.</p>
+          <div class="product-meta"><span class="tour-chip">Axis A1210/A1601</span><span class="tour-chip">HTTP relay</span><span class="tour-chip">Schedules</span><span class="tour-chip">Fail closed</span></div>
+        </div>
+      </section><section class="section"><div class="container"><div class="product-body" data-reveal>
+      <h2>Supported controllers</h2>
+      <div class="panel"><table class="spec-table"><tbody><tr><th>Simulated relay</th><td>Commission and demo without hardware. Acknowledges commands locally.</td></tr><tr><th>Axis VAPIX</th><td>AXIS A1210/A1601-class controllers on AXIS OS 9.70+ with Basic or Digest auth.</td></tr><tr><th>Generic HTTP</th><td>POST an unlock JSON body to a relay, ESPHome/Shelly bridge, or site webhook.</td></tr><tr><th>Relay settings</th><td>I/O port, 1–30 second pulse, active state open or closed.</td></tr></tbody></table></div>
+      <h2>Local policy</h2>
+      <ul>
+        <li>Weekly windows, multiple windows, overnight windows, and holiday closures.</li>
+        <li>Role authorization per door: Employee, Contractor, Visitor, Administrator.</li>
+        <li>Kiosk door binding: this kiosk unlocks this door after a granted verification.</li>
+        <li>Manual unlock for commissioning, attributed to the signed-in operator.</li>
+        <li>Controller test verifies reachability, credentials, and output direction.</li>
+      </ul>
+      <h2>Fail-closed behavior</h2>
+      <p>A denied request never opens the strike. That includes a disabled door, missing schedule, unauthorized role, missing controller, timeout, or a kiosk without the desktop door bridge.</p>
+      <div class="product-note warning">
+        <strong>Safety:</strong> use a fail-safe strike with independent request-to-exit and fire-alarm release. Test egress with the software powered off. This release does not supervise REX or door-position inputs, detect held/forced doors, or enforce anti-passback.
+      </div>
+      <div class="next-pages"><a class="next-card" href="live-verification.html"><span>Previous</span><strong>Live verification</strong><small>How the identity decision is made.</small></a><a class="next-card" href="audit.html"><span>Next</span><strong>Audit & mobile</strong><small>See every door command and operator action.</small></a><a class="next-card" href="hub.html"><span>Next</span><strong>Hub & licensing</strong><small>Capacity packs and annual support.</small></a></div>
+    </div></div></section><section class="section">
+        <div class="container">
+          <div class="cta" data-reveal>
+            <p class="eyebrow is-center">Next step</p>
+            <h2>Commission a door with a real controller.</h2>
+            <p>Start with the simulated relay, then test Axis Digest auth, relay ports, and fail-closed behavior.</p>
+            <div class="cta-actions">
+              <a class="btn btn-primary" href="index.html#pricing">View pricing</a>
+              <a class="btn btn-ghost" href="spec-sheet.html">Technical spec</a>
+            </div>
+            <p class="cta-note">Perpetual site licensing · optional annual support · hardware sold separately</p>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer class="site-footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <a class="brand" href="index.html">
+              <img src="assets/logo.svg" alt="" width="38" height="38" />
+              <span><span class="brand-name">SENTRY</span><span class="brand-sub">Access control</span></span>
+            </a>
+            <p>Local-first biometric verification, door control, camera intelligence, and audit for security integrators.</p>
+          </div>
+          <div class="footer-col">
+            <h4>Platform</h4>
+            <a href="platform.html">Overview</a>
+            <a href="live-verification.html">Live verification</a>
+            <a href="doors.html">Doors &amp; rules</a>
+            <a href="cameras.html">Camera gateway</a>
+            <a href="audit.html">Audit &amp; mobile</a>
+            <a href="hub.html">Hub &amp; licensing</a>
+          </div>
+          <div class="footer-col">
+            <h4>Company</h4>
+            <a href="index.html#tour">Product tour</a>
+            <a href="index.html#integrators">Integrator program</a>
+            <a href="index.html#pricing">Pricing</a>
+            <a href="spec-sheet.html">Spec sheet</a>
+            <a href="mailto:joshua@keyauditpro.com" data-config="email-href">Contact sales</a>
+          </div>
+          <div class="footer-col">
+            <h4>Legal</h4>
+            <a href="privacy.html">Privacy policy</a>
+            <a href="terms.html">Terms of sale</a>
+            <a href="terms.html#acceptable-use">Acceptable use</a>
+            <a href="terms.html#biometric">Biometric obligations</a>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <span>© <span data-year>2026</span> <span data-config="legal-entity">Vybelive LLC</span>. All rights reserved.</span>
+          <span class="status">Local-first by design</span>
+          <span>Sales: <a href="mailto:joshua@keyauditpro.com" data-config="email-href"><span data-config="email">joshua@keyauditpro.com</span></a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

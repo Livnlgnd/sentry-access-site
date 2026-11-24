@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Camera gateway — Sentry Access</title>
+    <meta name="description" content="Sentry Access camera gateway: RTSP and NVR ingest through bundled FFmpeg, local face matching, enrolled-only observations, cooldown, and tray mode." />
+    <meta name="theme-color" content="#ffffff" />
+    <meta name="color-scheme" content="light" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self'; script-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'" />
+    <link rel="icon" href="assets/logo.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="assets/styles.css" />
+    <script defer src="assets/config.js"></script>
+    <script defer src="assets/stripe.generated.js"></script>
+    <script defer src="assets/app.js"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="brand" href="index.html" aria-label="Sentry Access home">
+          <img src="assets/logo.svg" alt="" width="38" height="38" />
+          <span><span class="brand-name">SENTRY</span><span class="brand-sub">Access control</span></span>
+        </a>
+        
+        <nav class="nav" aria-label="Main">
+          <a href="platform.html">Platform</a>
+          <a href="index.html#tour">Tour</a>
+          <a href="index.html#how">How it works</a>
+          <a href="index.html#integrators">Integrators</a>
+          <a href="index.html#pricing">Pricing</a>
+          <a href="index.html#security">Security</a>
+          <a href="index.html#faq">FAQ</a>
+        </nav>
+        <div class="header-actions">
+          <a class="btn btn-ghost btn-sm" href="spec-sheet.html">Spec sheet</a>
+          <a class="btn btn-primary btn-sm" href="index.html#pricing">Buy Pro</a>
+          <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-nav">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </div>
+      
+      <div class="mobile-nav" id="mobile-nav">
+        <div class="container mobile-nav-inner">
+          <a href="platform.html">Platform</a>
+          <a href="index.html#tour">Tour</a>
+          <a href="index.html#how">How it works</a>
+          <a href="index.html#integrators">Integrators</a>
+          <a href="index.html#pricing">Pricing</a>
+          <a href="index.html#security">Security</a>
+          <a href="index.html#faq">FAQ</a>
+          <a href="spec-sheet.html">Spec sheet</a>
+          <a class="btn btn-primary" href="index.html#pricing">Buy Pro</a>
+        </div>
+      </div>
+    </header>
+    <main id="main">
+<section class="product-hero">
+        <div class="container">
+          <div class="breadcrumbs"><a href="index.html">Home</a><span>/</span><a href="platform.html">Platform</a><span>/</span><span>Camera gateway</span></div>
+          <p class="eyebrow">Camera gateway</p>
+          <h1>Reuse the cameras already on the wall.</h1>
+          <p class="lead">Pull RTSP or NVR substreams into the local face engine. The gateway logs only matched enrolled identities, never unknown passersby, and never stores or uploads frames.</p>
+          <div class="product-meta"><span class="tour-chip">RTSP / RTSPS</span><span class="tour-chip">HTTP MJPEG</span><span class="tour-chip">NVR channels</span><span class="tour-chip">Bundled FFmpeg</span></div>
+        </div>
+      </section><section class="section"><div class="container"><div class="product-body" data-reveal>
+      <h2>Ingest and processing</h2>
+      <ul>
+        <li>RTSP, RTSPS, HTTP MJPEG, and NVR channel URLs.</li>
+        <li>Bundled FFmpeg; no separate installation on the kiosk.</li>
+        <li>Default sampling at 2 FPS and 960 px working width.</li>
+        <li>Face detection and matching run locally against enrolled templates.</li>
+        <li>60-second per-camera/per-identity cooldown to avoid duplicates.</li>
+        <li>Automatic reconnect and visible stream status.</li>
+      </ul>
+      <h2>What gets logged</h2>
+      <div class="panel"><table class="spec-table"><tbody><tr><th>Matched identity</th><td>Name, employee ID, role, confidence, distance, threshold.</td></tr><tr><th>Camera context</th><td>Camera name, location, timestamp, quality.</td></tr><tr><th>Unknown faces</th><td>Not identified and not logged.</td></tr><tr><th>Video frames</th><td>Decoded in memory only; never written or uploaded.</td></tr><tr><th>Credentials</th><td>RTSP URLs and passwords stay in the OS keystore.</td></tr></tbody></table></div>
+      <div class="product-note warning">
+        <strong>Current limits:</strong> one face is processed per sampled frame. In a busy lobby, two people walking together can mean one goes unobserved. There is no automatic ONVIF discovery, continuous recording, live view, PTZ, audio, LPR, or Ring support.
+      </div>
+      <h2>NVR caveat</h2>
+      <p>Many NVR PoE ports isolate cameras on a separate subnet. If the camera IP is unreachable from the kiosk, use the NVR channel RTSP URL or enable the NVR’s virtual-host/camera-access feature.</p>
+      <h2>Background behavior</h2>
+      <p>Closing the window while cameras are enabled minimizes the gateway to the system tray. Quit explicitly from the tray to stop processing.</p>
+      <div class="next-pages"><a class="next-card" href="audit.html"><span>Next</span><strong>Audit & mobile</strong><small>See observations alongside kiosk and door events.</small></a><a class="next-card" href="live-verification.html"><span>Previous</span><strong>Live verification</strong><small>The same local face engine at the door.</small></a><a class="next-card" href="hub.html"><span>Next</span><strong>Hub & licensing</strong><small>Camera Gateway Packs and site sync.</small></a></div>
+    </div></div></section><section class="section">
+        <div class="container">
+          <div class="cta" data-reveal>
+            <p class="eyebrow is-center">Next step</p>
+            <h2>Point it at a camera you already own.</h2>
+            <p>Add an RTSP substream or NVR channel, enroll a test identity, and watch a matched observation reach the audit stream.</p>
+            <div class="cta-actions">
+              <a class="btn btn-primary" href="index.html#pricing">View pricing</a>
+              <a class="btn btn-ghost" href="spec-sheet.html">Technical spec</a>
+            </div>
+            <p class="cta-note">Perpetual site licensing · optional annual support · hardware sold separately</p>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer class="site-footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <a class="brand" href="index.html">
+              <img src="assets/logo.svg" alt="" width="38" height="38" />
+              <span><span class="brand-name">SENTRY</span><span class="brand-sub">Access control</span></span>
+            </a>
+            <p>Local-first biometric verification, door control, camera intelligence, and audit for security integrators.</p>
+          </div>
+          <div class="footer-col">
+            <h4>Platform</h4>
+            <a href="platform.html">Overview</a>
+            <a href="live-verification.html">Live verification</a>
+            <a href="doors.html">Doors &amp; rules</a>
+            <a href="cameras.html">Camera gateway</a>
+            <a href="audit.html">Audit &amp; mobile</a>
+            <a href="hub.html">Hub &amp; licensing</a>
+          </div>
+          <div class="footer-col">
+            <h4>Company</h4>
+            <a href="index.html#tour">Product tour</a>
+            <a href="index.html#integrators">Integrator program</a>
+            <a href="index.html#pricing">Pricing</a>
+            <a href="spec-sheet.html">Spec sheet</a>
+            <a href="mailto:joshua@keyauditpro.com" data-config="email-href">Contact sales</a>
+          </div>
+          <div class="footer-col">
+            <h4>Legal</h4>
+            <a href="privacy.html">Privacy policy</a>
+            <a href="terms.html">Terms of sale</a>
+            <a href="terms.html#acceptable-use">Acceptable use</a>
+            <a href="terms.html#biometric">Biometric obligations</a>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <span>© <span data-year>2026</span> <span data-config="legal-entity">Vybelive LLC</span>. All rights reserved.</span>
+          <span class="status">Local-first by design</span>
+          <span>Sales: <a href="mailto:joshua@keyauditpro.com" data-config="email-href"><span data-config="email">joshua@keyauditpro.com</span></a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

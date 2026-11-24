@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Platform overview — Sentry Access</title>
+    <meta name="description" content="Sentry Access platform overview: local biometric verification, Axis door control, RTSP camera gateway, audit, hub sync, and licensing." />
+    <meta name="theme-color" content="#ffffff" />
+    <meta name="color-scheme" content="light" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self'; script-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'" />
+    <link rel="icon" href="assets/logo.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="assets/styles.css" />
+    <script defer src="assets/config.js"></script>
+    <script defer src="assets/stripe.generated.js"></script>
+    <script defer src="assets/app.js"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="brand" href="index.html" aria-label="Sentry Access home">
+          <img src="assets/logo.svg" alt="" width="38" height="38" />
+          <span><span class="brand-name">SENTRY</span><span class="brand-sub">Access control</span></span>
+        </a>
+        
+        <nav class="nav" aria-label="Main">
+          <a href="platform.html">Platform</a>
+          <a href="index.html#tour">Tour</a>
+          <a href="index.html#how">How it works</a>
+          <a href="index.html#integrators">Integrators</a>
+          <a href="index.html#pricing">Pricing</a>
+          <a href="index.html#security">Security</a>
+          <a href="index.html#faq">FAQ</a>
+        </nav>
+        <div class="header-actions">
+          <a class="btn btn-ghost btn-sm" href="spec-sheet.html">Spec sheet</a>
+          <a class="btn btn-primary btn-sm" href="index.html#pricing">Buy Pro</a>
+          <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-nav">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </div>
+      
+      <div class="mobile-nav" id="mobile-nav">
+        <div class="container mobile-nav-inner">
+          <a href="platform.html">Platform</a>
+          <a href="index.html#tour">Tour</a>
+          <a href="index.html#how">How it works</a>
+          <a href="index.html#integrators">Integrators</a>
+          <a href="index.html#pricing">Pricing</a>
+          <a href="index.html#security">Security</a>
+          <a href="index.html#faq">FAQ</a>
+          <a href="spec-sheet.html">Spec sheet</a>
+          <a class="btn btn-primary" href="index.html#pricing">Buy Pro</a>
+        </div>
+      </div>
+    </header>
+    <main id="main">
+<section class="product-hero">
+        <div class="container">
+          <div class="breadcrumbs"><a href="index.html">Home</a><span>/</span><a href="platform.html">Platform</a><span>/</span><span>Platform</span></div>
+          <p class="eyebrow">Platform</p>
+          <h1>One local stack for identity, doors, cameras, and audit.</h1>
+          <p class="lead">Sentry Access is built for security integrators who need a complete biometric access deployment without putting face templates or door decisions in someone else’s cloud.</p>
+          <div class="product-meta"><span class="tour-chip">Offline-first</span><span class="tour-chip">Axis VAPIX</span><span class="tour-chip">RTSP / NVR</span><span class="tour-chip">iPhone audit</span><span class="tour-chip">Perpetual license</span></div>
+        </div>
+      </section><section class="section"><div class="container"><div class="product-body" data-reveal>
+      <div class="fact-grid"><div class="fact"><strong>Windows kiosk</strong><span>1:N face verification, liveness, quality gating, and the access decision.</span></div><div class="fact"><strong>Door control</strong><span>Axis A1210/A1601 or HTTP relays with local schedules and role rules.</span></div><div class="fact"><strong>Camera gateway</strong><span>Existing RTSP/NVR streams processed locally for enrolled-only observations.</span></div><div class="fact"><strong>LAN hub</strong><span>Signed identity bundles, delta sync, audit consolidation, and mobile pairing.</span></div><div class="fact"><strong>iPhone companion</strong><span>Read-only audit and kiosk inventory with Face ID protection.</span></div><div class="fact"><strong>Offline license</strong><span>ECDSA-signed capacity, no cloud activation, optional annual updates.</span></div></div>
+      <h2>Five surfaces, one deployment</h2>
+      <p>
+        The platform is deliberately split so each part can run where it belongs:
+        the kiosk owns the biometric decision, the door controller owns the
+        relay, the camera gateway owns the RTSP decode, and the hub owns
+        distribution and history. If the hub is offline, verification and door
+        policy keep working.
+      </p>
+      <div class="next-pages"><a class="next-card" href="live-verification.html"><span>Surface 01</span><strong>Live verification</strong><small>Face match, liveness, quality, and the decision.</small></a><a class="next-card" href="doors.html"><span>Surface 02</span><strong>Doors & rules</strong><small>Axis/HTTP relays, schedules, roles, fail-closed behavior.</small></a><a class="next-card" href="cameras.html"><span>Surface 03</span><strong>Camera gateway</strong><small>RTSP/NVR ingest, local matching, enrolled-only events.</small></a><a class="next-card" href="audit.html"><span>Surface 04</span><strong>Audit & mobile</strong><small>Searchable history, operator attribution, iPhone stream.</small></a><a class="next-card" href="hub.html"><span>Surface 05</span><strong>Hub & licensing</strong><small>Signed sync, backups, capacity packs, updates.</small></a><a class="next-card" href="spec-sheet.html"><span>Technical</span><strong>Spec sheet</strong><small>Print the architecture, requirements, and limits.</small></a></div>
+      <h2>Deployment modes</h2>
+      <p><strong>Single kiosk:</strong> Windows app, local door controller, local audit, and optional cameras. No hub required.</p>
+      <p><strong>LAN site:</strong> add the PostgreSQL hub for identity distribution, audit consolidation, backups, and iPhone pairing.</p>
+      <p><strong>Multi-site:</strong> run one hub per site and use signed licenses to scope capacity and annual support.</p>
+      <div class="product-note">
+        <strong>Positioning:</strong> this is a local-first product for integrators, not a cloud video platform. It does not claim UL/EN/SOC 2 certification or life-safety suitability.
+      </div>
+    </div></div></section><section class="section">
+        <div class="container">
+          <div class="cta" data-reveal>
+            <p class="eyebrow is-center">Next step</p>
+            <h2>See the platform on your next site.</h2>
+            <p>Start with a Starter or Pro license, add capacity packs as the site grows, and keep the core software perpetual.</p>
+            <div class="cta-actions">
+              <a class="btn btn-primary" href="index.html#pricing">View pricing</a>
+              <a class="btn btn-ghost" href="spec-sheet.html">Technical spec</a>
+            </div>
+            <p class="cta-note">Perpetual site licensing · optional annual support · hardware sold separately</p>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer class="site-footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <a class="brand" href="index.html">
+              <img src="assets/logo.svg" alt="" width="38" height="38" />
+              <span><span class="brand-name">SENTRY</span><span class="brand-sub">Access control</span></span>
+            </a>
+            <p>Local-first biometric verification, door control, camera intelligence, and audit for security integrators.</p>
+          </div>
+          <div class="footer-col">
+            <h4>Platform</h4>
+            <a href="platform.html">Overview</a>
+            <a href="live-verification.html">Live verification</a>
+            <a href="doors.html">Doors &amp; rules</a>
+            <a href="cameras.html">Camera gateway</a>
+            <a href="audit.html">Audit &amp; mobile</a>
+            <a href="hub.html">Hub &amp; licensing</a>
+          </div>
+          <div class="footer-col">
+            <h4>Company</h4>
+            <a href="index.html#tour">Product tour</a>
+            <a href="index.html#integrators">Integrator program</a>
+            <a href="index.html#pricing">Pricing</a>
+            <a href="spec-sheet.html">Spec sheet</a>
+            <a href="mailto:joshua@keyauditpro.com" data-config="email-href">Contact sales</a>
+          </div>
+          <div class="footer-col">
+            <h4>Legal</h4>
+            <a href="privacy.html">Privacy policy</a>
+            <a href="terms.html">Terms of sale</a>
+            <a href="terms.html#acceptable-use">Acceptable use</a>
+            <a href="terms.html#biometric">Biometric obligations</a>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <span>© <span data-year>2026</span> <span data-config="legal-entity">Vybelive LLC</span>. All rights reserved.</span>
+          <span class="status">Local-first by design</span>
+          <span>Sales: <a href="mailto:joshua@keyauditpro.com" data-config="email-href"><span data-config="email">joshua@keyauditpro.com</span></a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
