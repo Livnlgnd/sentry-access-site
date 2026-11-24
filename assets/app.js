@@ -7,10 +7,10 @@
 
   const defaults = {
     brand: 'Sentry Access',
-    legalEntity: 'Sentry Access',
-    contactEmail: 'sales@your-company.com',
+    legalEntity: 'Vybelive LLC',
+    contactEmail: 'joshua@keyauditpro.com',
     calendlyUrl: '',
-    jurisdiction: 'the State of [Your State]',
+    jurisdiction: 'the state in which Vybelive LLC is organized',
     pricing: {
       currency: 'USD',
       starter: 750,

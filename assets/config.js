@@ -9,12 +9,12 @@
  */
 window.SENTRY_SITE_CONFIG = {
   brand: 'Sentry Access',
-  legalEntity: 'Sentry Access',
-  contactEmail: 'sales@your-company.com',
-  /** Optional scheduling link, e.g. https://cal.com/your-team/deployment. */
+  legalEntity: 'Vybelive LLC',
+  contactEmail: 'joshua@keyauditpro.com',
+  /** Optional scheduling link for deployment calls. */
   calendlyUrl: '',
-  /** Used in the Terms page. Replace before accepting payments. */
-  jurisdiction: 'the State of [Your State]',
+  /** Used in the Terms page. Matches the KeyAudit Pro terms. */
+  jurisdiction: 'the state in which Vybelive LLC is organized',
 
   pricing: {
     currency: 'USD',
