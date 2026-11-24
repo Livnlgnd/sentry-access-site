@@ -1,0 +1,315 @@
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>How it works — Sentry Access</title>
+    <meta name="description" content="Sentry Access deployment path: scope the site, install the kiosk, prove door policy, and hand off audit and backups." />
+    <meta name="theme-color" content="#ffffff" />
+    <meta name="color-scheme" content="light" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self'; script-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'" />
+    <link rel="icon" href="assets/logo.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="assets/styles.css" />
+    <script defer src="assets/config.js"></script>
+    <script defer src="assets/stripe.generated.js"></script>
+    <script defer src="assets/app.js"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+<svg width="0" height="0" aria-hidden="true" class="svg-sprite">
+      <symbol id="i-shield" viewBox="0 0 24 24">
+        <path d="M12 3 5 6v5.5c0 4.3 2.9 8.1 7 9.5 4.1-1.4 7-5.2 7-9.5V6l-7-3Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+        <path d="m9 12 2 2 4-4" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+      </symbol>
+      <symbol id="i-door" viewBox="0 0 24 24">
+        <path d="M5 21V4a1 1 0 0 1 1-1h9a1 1 0 0 1 1 1v17M3 21h18M13 12h.01" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+      </symbol>
+      <symbol id="i-camera" viewBox="0 0 24 24">
+        <rect x="3" y="7" width="13" height="10" rx="2" fill="none" stroke="currentColor" stroke-width="1.7"/>
+        <path d="m16 10 5-2v8l-5-2M7 7V5h5v2" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+      </symbol>
+      <symbol id="i-phone" viewBox="0 0 24 24">
+        <rect x="7" y="2.5" width="10" height="19" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.7"/>
+        <path d="M10.5 5.5h3M11 18.5h2" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+      </symbol>
+      <symbol id="i-lock" viewBox="0 0 24 24">
+        <rect x="5" y="10" width="14" height="10" rx="2" fill="none" stroke="currentColor" stroke-width="1.7"/>
+        <path d="M8 10V7a4 4 0 0 1 8 0v3M12 14v2" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+      </symbol>
+      <symbol id="i-server" viewBox="0 0 24 24">
+        <rect x="3.5" y="4" width="17" height="6" rx="1.7" fill="none" stroke="currentColor" stroke-width="1.7"/>
+        <rect x="3.5" y="14" width="17" height="6" rx="1.7" fill="none" stroke="currentColor" stroke-width="1.7"/>
+        <path d="M7 7h.01M7 17h.01M11 7h6M11 17h6" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+      </symbol>
+      <symbol id="i-offline" viewBox="0 0 24 24">
+        <path d="M2 8.5a15 15 0 0 1 20 0M5.5 12.5a10 10 0 0 1 13 0M9 16.5a5 5 0 0 1 6 0M12 20h.01M3 3l18 18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+      </symbol>
+      <symbol id="i-check" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.6" opacity=".45"/>
+        <path d="m8 12 2.5 2.5L16 9" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+      </symbol>
+      <symbol id="i-arrow" viewBox="0 0 24 24">
+        <path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+      </symbol>
+      <symbol id="i-download" viewBox="0 0 24 24">
+        <path d="M12 3v11M7.5 10 12 14.5 16.5 10M4 20h16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+      </symbol>
+      <symbol id="i-mail" viewBox="0 0 24 24">
+        <rect x="3" y="5" width="18" height="14" rx="2" fill="none" stroke="currentColor" stroke-width="1.7"/>
+        <path d="m4 7 8 6 8-6" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+      </symbol>
+      <symbol id="i-alert" viewBox="0 0 24 24">
+        <path d="M12 3.5 2.8 20h18.4L12 3.5Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+        <path d="M12 9v5M12 17.5h.01" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+      </symbol>
+      <symbol id="i-clock" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="1.7"/>
+        <path d="M12 7.5V12l3 2" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+      </symbol>
+      <symbol id="i-layers" viewBox="0 0 24 24">
+        <path d="m12 3 9 5-9 5-9-5 9-5Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+        <path d="m3 12 9 5 9-5M3 16l9 5 9-5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+      </symbol>
+      <symbol id="i-key" viewBox="0 0 24 24">
+        <circle cx="8" cy="8" r="3.5" fill="none" stroke="currentColor" stroke-width="1.7"/>
+        <path d="m10.5 10.5 8 8M15 15l2-2M17.5 17.5l2-2" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+      </symbol>
+      <symbol id="i-refresh" viewBox="0 0 24 24">
+        <path d="M20 11a8 8 0 1 0-2.3 6.7M20 5v6h-6" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+      </symbol>
+      <symbol id="i-users" viewBox="0 0 24 24">
+        <circle cx="9" cy="8" r="3.2" fill="none" stroke="currentColor" stroke-width="1.7"/>
+        <path d="M3.5 20a5.5 5.5 0 0 1 11 0M16 5.2a3.2 3.2 0 0 1 0 5.6M17.5 14.5A5.5 5.5 0 0 1 20.5 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+      </symbol>
+      <symbol id="i-plug" viewBox="0 0 24 24">
+        <path d="M9 3v5M15 3v5M7 8h10v3a5 5 0 0 1-10 0V8ZM12 16v5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+      </symbol>
+      <symbol id="i-x" viewBox="0 0 24 24">
+        <path d="M6 6l12 12M18 6 6 18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+      </symbol>
+      <symbol id="i-calendar" viewBox="0 0 24 24">
+        <rect x="3.5" y="5" width="17" height="16" rx="2" fill="none" stroke="currentColor" stroke-width="1.7"/>
+        <path d="M3.5 10h17M8 3v4M16 3v4M8 14h2M14 14h2M8 17.5h2" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+      </symbol>
+      <symbol id="i-chart" viewBox="0 0 24 24">
+        <path d="M4 20V10M10 20V4M16 20v-7M22 20H2" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+      </symbol>
+    </svg>
+
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="brand" href="index.html" aria-label="Sentry Access home">
+          <img src="assets/logo.svg" alt="" width="38" height="38" />
+          <span><span class="brand-name">SENTRY</span><span class="brand-sub">Access control</span></span>
+        </a>
+        <nav class="nav" aria-label="Main">
+          <a href="platform.html">Platform</a>
+          <a href="tour.html">Tour</a>
+          <a href="how-it-works.html">How it works</a>
+          <a href="integrators.html">Integrators</a>
+          <a href="pricing.html">Pricing</a>
+          <a href="security.html">Security</a>
+          <a href="faq.html">FAQ</a>
+        </nav>
+        <div class="header-actions">
+          <a class="btn btn-ghost btn-sm" href="spec-sheet.html">Spec sheet</a>
+          <a class="btn btn-primary btn-sm" href="pricing.html">Buy Pro</a>
+          <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-nav">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </div>
+      <div class="mobile-nav" id="mobile-nav">
+        <div class="container mobile-nav-inner">
+          <a href="platform.html">Platform</a>
+          <a href="tour.html">Tour</a>
+          <a href="how-it-works.html">How it works</a>
+          <a href="integrators.html">Integrators</a>
+          <a href="pricing.html">Pricing</a>
+          <a href="security.html">Security</a>
+          <a href="faq.html">FAQ</a>
+          <a href="spec-sheet.html">Spec sheet</a>
+          <a class="btn btn-primary" href="pricing.html">Buy Pro</a>
+        </div>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="page-hero">
+        <div class="container">
+          <div class="breadcrumbs"><a href="index.html">Home</a><span>/</span><span>Deployment path</span></div>
+          <p class="eyebrow">Deployment path</p>
+          <h1>From purchase to live door in four steps.</h1>
+          <p class="lead">
+              You keep the client relationship and the installation. We provide
+              the software, commissioning support, and a written deployment
+              record.
+            </p>
+        </div>
+      </section>
+
+<section class="section section--tight" id="how">
+        <div class="container">
+          
+
+          <div class="steps">
+            <article class="step" data-reveal>
+              <h3>Scope the site</h3>
+              <p>
+                Count doors, cameras, and kiosk locations. Confirm Axis
+                controller model, relay wiring, fail-safe strike, REX, and fire
+                release.
+              </p>
+            </article>
+            <article class="step" data-reveal>
+              <h3>Install the node</h3>
+              <p>
+                Install the Windows app, enroll identities, bind the kiosk door,
+                add RTSP streams, and connect the optional LAN hub.
+              </p>
+            </article>
+            <article class="step" data-reveal>
+              <h3>Prove the policy</h3>
+              <p>
+                Test an authorized role, an unauthorized role, a closed
+                schedule, and a disconnected controller. Everything must fail
+                closed.
+              </p>
+            </article>
+            <article class="step" data-reveal>
+              <h3>Hand off the audit</h3>
+              <p>
+                Pair the client’s iPhone, export the deployment report, and leave a
+                documented backup and recovery procedure.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container split">
+          <div data-reveal>
+            <p class="eyebrow">Built for the field</p>
+            <h2>Designed to survive a real site, not a demo table.</h2>
+            <p class="lead">
+              Windows kiosk, PoE cameras, an Axis controller, and an iPhone.
+              No cloud account is required for verification, door decisions, or
+              audit capture.
+            </p>
+            <ul class="checklist">
+              <li>
+                <svg width="17" height="17" aria-hidden="true"><use href="#i-check"/></svg>
+                <span><strong>Offline-first.</strong> Local templates, local rules, local audit. The hub is optional and recoverable.</span>
+              </li>
+              <li>
+                <svg width="17" height="17" aria-hidden="true"><use href="#i-check"/></svg>
+                <span><strong>Fail closed.</strong> Missing schedule, controller error, or policy denial never opens the strike.</span>
+              </li>
+              <li>
+                <svg width="17" height="17" aria-hidden="true"><use href="#i-check"/></svg>
+                <span><strong>Tray mode.</strong> Closing the window keeps camera processing alive; quit explicitly to stop it.</span>
+              </li>
+              <li>
+                <svg width="17" height="17" aria-hidden="true"><use href="#i-check"/></svg>
+                <span><strong>Field exports.</strong> CSV audit history and a printable technical spec sheet for the client file.</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="panel" data-reveal>
+            <table class="spec-table">
+              <tbody>
+                <tr><th>Kiosk host</th><td>Windows 10/11 x64, Electron desktop app</td></tr>
+                <tr><th>Face engine</th><td>Local SSD detector + FaceNet 128-d, on-device</td></tr>
+                <tr><th>Door controllers</th><td>Axis A1210/A1601 via VAPIX; generic HTTP relay</td></tr>
+                <tr><th>Camera inputs</th><td>RTSP, RTSPS, HTTP MJPEG, NVR channel URLs</td></tr>
+                <tr><th>Hub</th><td>Fastify + PostgreSQL on the customer LAN</td></tr>
+                <tr><th>Companion</th><td>iOS, read-only audit and kiosk inventory</td></tr>
+                <tr><th>Licensing</th><td>Per-site, no per-user seats</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <a class="brand" href="index.html">
+              <img src="assets/logo.svg" alt="" width="38" height="38" />
+              <span><span class="brand-name">SENTRY</span><span class="brand-sub">Access control</span></span>
+            </a>
+            <p>Local-first biometric verification, door control, camera intelligence, and audit for security integrators.</p>
+          </div>
+          <div class="footer-col">
+            <h4>Platform</h4>
+            <a href="platform.html">Overview</a>
+            <a href="live-verification.html">Live verification</a>
+            <a href="doors.html">Doors &amp; rules</a>
+            <a href="cameras.html">Camera gateway</a>
+            <a href="audit.html">Audit &amp; mobile</a>
+            <a href="hub.html">Hub &amp; licensing</a>
+          </div>
+          <div class="footer-col">
+            <h4>Company</h4>
+            <a href="tour.html">Product tour</a>
+            <a href="how-it-works.html">How it works</a>
+            <a href="integrators.html">Integrator program</a>
+            <a href="pricing.html">Pricing</a>
+            <a href="security.html">Security &amp; limits</a>
+            <a href="faq.html">FAQ</a>
+            <a href="spec-sheet.html">Spec sheet</a>
+            <a href="mailto:joshua@keyauditpro.com" data-config="email-href">Contact sales</a>
+          </div>
+          <div class="footer-col">
+            <h4>Legal</h4>
+            <a href="privacy.html">Privacy policy</a>
+            <a href="terms.html">Terms of sale</a>
+            <a href="terms.html#acceptable-use">Acceptable use</a>
+            <a href="terms.html#biometric">Biometric obligations</a>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <span>© <span data-year>2026</span> <span data-config="legal-entity">Vybelive LLC</span>. All rights reserved.</span>
+          <span class="status">Local-first by design</span>
+          <span>Sales: <a href="mailto:joshua@keyauditpro.com" data-config="email-href"><span data-config="email">joshua@keyauditpro.com</span></a></span>
+        </div>
+      </div>
+    </footer>
+
+    <dialog id="contact-dialog" aria-labelledby="dialog-title">
+      <div class="dialog-head">
+        <div>
+          <h3 id="dialog-title">Talk to the deployment team</h3>
+          <p>
+            Tell us the site count, doors, cameras, and timeline. We’ll reply
+            with scope, lead time, and a checkout or invoice.
+          </p>
+        </div>
+        <button class="dialog-close" type="button" aria-label="Close" data-dialog-close>
+          <svg width="16" height="16" aria-hidden="true"><use href="#i-x"/></svg>
+        </button>
+      </div>
+      <div class="dialog-body">
+        <div class="dialog-plan">
+          <span data-dialog-plan>Deployment inquiry</span>
+          <strong data-dialog-price></strong>
+        </div>
+        <p data-dialog-blurb></p>
+        <div class="dialog-actions">
+          <a class="btn btn-primary" href="mailto:joshua@keyauditpro.com" data-dialog-email>
+            Email the team
+          </a>
+          <button class="btn btn-ghost" type="button" data-dialog-copy>Copy email</button>
+          <a class="btn btn-quiet" href="pricing.html" data-dialog-close>Back to pricing</a>
+        </div>
+        <p class="copy-note" data-dialog-note></p>
+      </div>
+    </dialog>
+  </body>
+</html>
