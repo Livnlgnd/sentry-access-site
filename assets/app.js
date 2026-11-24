@@ -353,6 +353,93 @@
     }
   }
 
+  function setupTour() {
+    const shell = document.querySelector('[data-tour]')
+    if (!shell) return
+
+    const tabs = Array.from(shell.querySelectorAll('[data-tour-tab]'))
+    const panels = Array.from(shell.querySelectorAll('[data-tour-panel]'))
+    const count = shell.querySelector('[data-tour-count]')
+    const dots = Array.from(
+      shell.querySelectorAll('.tour-progress i'),
+    )
+    const next = shell.querySelector('[data-tour-next]')
+    const prev = shell.querySelector('[data-tour-prev]')
+    const play = shell.querySelector('[data-tour-play]')
+
+    let index = 0
+    let timer = null
+    let playing = false
+
+    const stop = () => {
+      if (timer) window.clearInterval(timer)
+      timer = null
+      playing = false
+      if (play) play.textContent = 'Play tour'
+    }
+
+    const render = (nextIndex) => {
+      index = (nextIndex + panels.length) % panels.length
+      tabs.forEach((tab, tabIndex) => {
+        const active = tabIndex === index
+        tab.setAttribute('aria-selected', String(active))
+        tab.tabIndex = active ? 0 : -1
+      })
+      panels.forEach((panel, panelIndex) => {
+        panel.hidden = panelIndex !== index
+      })
+      if (count) {
+        count.textContent = `${String(index + 1).padStart(2, '0')} / ${String(
+          panels.length,
+        ).padStart(2, '0')}`
+      }
+      dots.forEach((dot, dotIndex) => {
+        dot.classList.toggle('active', dotIndex === index)
+      })
+    }
+
+    tabs.forEach((tab) => {
+      tab.addEventListener('click', () => {
+        stop()
+        render(Number(tab.getAttribute('data-tour-tab')))
+      })
+      tab.addEventListener('keydown', (event) => {
+        if (event.key === 'ArrowRight' || event.key === 'ArrowDown') {
+          event.preventDefault()
+          stop()
+          render(index + 1)
+          tabs[index]?.focus()
+        }
+        if (event.key === 'ArrowLeft' || event.key === 'ArrowUp') {
+          event.preventDefault()
+          stop()
+          render(index - 1)
+          tabs[index]?.focus()
+        }
+      })
+    })
+
+    next?.addEventListener('click', () => {
+      stop()
+      render(index + 1)
+    })
+    prev?.addEventListener('click', () => {
+      stop()
+      render(index - 1)
+    })
+    play?.addEventListener('click', () => {
+      if (playing) {
+        stop()
+        return
+      }
+      playing = true
+      play.textContent = 'Pause tour'
+      timer = window.setInterval(() => render(index + 1), 5500)
+    })
+
+    render(0)
+  }
+
   function setupPrint() {
     document.querySelectorAll('[data-print]').forEach((button) => {
       button.addEventListener('click', () => window.print())
@@ -373,6 +460,7 @@
   const dialog = setupDialog()
   setupCheckout(dialog)
   setupCheckoutBanner()
+  setupTour()
   setupPrint()
   setupNavState()
 

@@ -125,6 +125,7 @@
 
         <nav class="nav" aria-label="Main">
           <a href="#product">Product</a>
+          <a href="#tour">Tour</a>
           <a href="#how">How it works</a>
           <a href="#integrators">Integrators</a>
           <a href="#pricing">Pricing</a>
@@ -150,6 +151,7 @@
       <div class="mobile-nav" id="mobile-nav">
         <div class="container mobile-nav-inner">
           <a href="#product">Product</a>
+          <a href="#tour">Tour</a>
           <a href="#how">How it works</a>
           <a href="#integrators">Integrators</a>
           <a href="#pricing">Pricing</a>
@@ -186,9 +188,9 @@
                 Buy Pro — <span data-price="pro">$1,500</span>
                 <svg width="15" height="15" aria-hidden="true"><use href="#i-arrow"/></svg>
               </a>
-              <a class="btn btn-ghost" href="spec-sheet.html">
-                Download spec sheet
-                <svg width="15" height="15" aria-hidden="true"><use href="#i-download"/></svg>
+              <a class="btn btn-ghost" href="#tour">
+                Take the product tour
+                <svg width="15" height="15" aria-hidden="true"><use href="#i-arrow"/></svg>
               </a>
             </div>
 
@@ -416,6 +418,325 @@
                 <li>Backups and stable hub ID</li>
               </ul>
             </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="tour">
+        <div class="container">
+          <div class="section-head" data-reveal>
+            <p class="eyebrow">Interactive product tour</p>
+            <h2>See the whole loop, not a slide.</h2>
+            <p class="lead">
+              Click through the actual workflow a security integrator runs on
+              site: verify an identity, release a door, watch a camera, review
+              the audit trail, and manage the hub, license, and updates.
+            </p>
+          </div>
+
+          <div class="tour-shell" data-tour data-reveal>
+            <div class="tour-tabs" role="tablist" aria-label="Product tour steps">
+              <button class="tour-tab" type="button" role="tab" id="tour-tab-0" aria-controls="tour-panel-0" aria-selected="true" data-tour-tab="0">
+                <span class="tour-step">01 / VERIFY</span>
+                <strong>Live verification</strong>
+                <span>Face match, liveness, quality gate, and the door decision.</span>
+              </button>
+              <button class="tour-tab" type="button" role="tab" id="tour-tab-1" aria-controls="tour-panel-1" aria-selected="false" data-tour-tab="1">
+                <span class="tour-step">02 / RELEASE</span>
+                <strong>Doors &amp; rules</strong>
+                <span>Axis relay control, schedules, roles, and fail-closed policy.</span>
+              </button>
+              <button class="tour-tab" type="button" role="tab" id="tour-tab-2" aria-controls="tour-panel-2" aria-selected="false" data-tour-tab="2">
+                <span class="tour-step">03 / OBSERVE</span>
+                <strong>Camera gateway</strong>
+                <span>RTSP and NVR streams, local matching, enrolled-only events.</span>
+              </button>
+              <button class="tour-tab" type="button" role="tab" id="tour-tab-3" aria-controls="tour-panel-3" aria-selected="false" data-tour-tab="3">
+                <span class="tour-step">04 / REVIEW</span>
+                <strong>Audit &amp; mobile</strong>
+                <span>Searchable events, operator attribution, and the iPhone stream.</span>
+              </button>
+              <button class="tour-tab" type="button" role="tab" id="tour-tab-4" aria-controls="tour-panel-4" aria-selected="false" data-tour-tab="4">
+                <span class="tour-step">05 / OPERATE</span>
+                <strong>Hub, license, updates</strong>
+                <span>Signed identity sync, capacity packs, and support-gated updates.</span>
+              </button>
+            </div>
+
+            <div class="tour-stage">
+              <div class="tour-frame">
+                <div class="tour-bar" aria-hidden="true">
+                  <i></i><i></i><i></i>
+                  <span class="tour-bar-label">Sentry Access &middot; product tour</span>
+                </div>
+                <div class="tour-app">
+                  <div class="tour-panel" role="tabpanel" id="tour-panel-0" aria-labelledby="tour-tab-0" data-tour-panel="0">
+                    <div class="tour-screen-head">
+                      <div>
+                        <h3>Live verification</h3>
+                        <p>Local 1:N match &middot; liveness &middot; quality gate</p>
+                      </div>
+                      <span class="tour-chip">Granted</span>
+                    </div>
+                    <div class="tour-kpis">
+                      <div class="tour-kpi"><span>Threshold</span><strong>0.50</strong></div>
+                      <div class="tour-kpi"><span>Confidence</span><strong class="mint">96%</strong></div>
+                      <div class="tour-kpi"><span>Liveness</span><strong>Head turn</strong></div>
+                      <div class="tour-kpi"><span>Quality</span><strong>Good</strong></div>
+                    </div>
+                    <div class="tour-split">
+                      <div class="tour-panel-card">
+                        <h4>Subject <span>CAM 01 &middot; live</span></h4>
+                        <div class="tour-identity">
+                          <div class="tour-avatar">JB</div>
+                          <div>
+                            <strong>Joshua Bell</strong>
+                            <small>EMP-1 &middot; Administrator</small>
+                          </div>
+                          <span class="tour-verdict">Granted</span>
+                        </div>
+                        <div class="tour-meter"><span></span></div>
+                        <div class="tour-meter-label"><span>Confidence 96%</span><span>Threshold 0.50</span></div>
+                        <div class="tour-door">
+                          <span class="tour-door-icon">DR</span>
+                          <div><strong>Main entrance</strong><small>Axis relay &middot; policy passed</small></div>
+                          <span class="right"><span class="tour-chip">Unlocked &middot; 5s</span></span>
+                        </div>
+                      </div>
+                      <div class="tour-panel-card">
+                        <h4>Decision checks</h4>
+                        <div class="tour-list">
+                          <div class="tour-row"><span class="dot"></span>Face match <span class="right mint">pass</span></div>
+                          <div class="tour-row"><span class="dot"></span>Liveness challenge <span class="right mint">pass</span></div>
+                          <div class="tour-row"><span class="dot"></span>Frame quality <span class="right mint">pass</span></div>
+                          <div class="tour-row"><span class="dot"></span>Role + schedule <span class="right mint">pass</span></div>
+                          <div class="tour-row"><span class="dot cyan"></span>Relay pulse <span class="right mint">5s</span></div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="tour-note cyan">
+                      <span>&#9679;</span>
+                      <span>Frames are decoded in memory. Only the encrypted template and the decision are retained.</span>
+                    </div>
+                  </div>
+
+                  <div class="tour-panel" role="tabpanel" id="tour-panel-1" aria-labelledby="tour-tab-1" data-tour-panel="1" hidden>
+                    <div class="tour-screen-head">
+                      <div>
+                        <h3>Doors &amp; rules</h3>
+                        <p>Local policy before any relay moves</p>
+                      </div>
+                      <span class="tour-chip">Fail closed</span>
+                    </div>
+                    <div class="tour-kpis">
+                      <div class="tour-kpi"><span>Doors</span><strong>3</strong></div>
+                      <div class="tour-kpi"><span>Armed</span><strong class="mint">3</strong></div>
+                      <div class="tour-kpi"><span>Controllers</span><strong>2</strong></div>
+                      <div class="tour-kpi"><span>Schedules</span><strong>2</strong></div>
+                    </div>
+                    <div class="tour-split">
+                      <div class="tour-panel-card">
+                        <h4>Door bindings <span>site-main</span></h4>
+                        <div class="tour-door">
+                          <span class="tour-door-icon">01</span>
+                          <div><strong>Main entrance</strong><small>Axis A1210 &middot; Business hours</small></div>
+                          <span class="right"><span class="tour-chip">Armed</span></span>
+                        </div>
+                        <div class="tour-door">
+                          <span class="tour-door-icon">02</span>
+                          <div><strong>Server room</strong><small>HTTP relay &middot; 24/7 &middot; Admin only</small></div>
+                          <span class="right"><span class="tour-chip">Armed</span></span>
+                        </div>
+                        <div class="tour-door">
+                          <span class="tour-door-icon">03</span>
+                          <div><strong>Loading bay</strong><small>Simulated relay &middot; Outside schedule</small></div>
+                          <span class="right"><span class="tour-chip amber">Denied</span></span>
+                        </div>
+                      </div>
+                      <div class="tour-panel-card">
+                        <h4>Business hours <span>Local time</span></h4>
+                        <div class="tour-list">
+                          <div class="tour-row"><span class="dot"></span>Mon&ndash;Fri <span class="right">08:00&ndash;18:00</span></div>
+                          <div class="tour-row"><span class="dot"></span>Holiday closures <span class="right">2026-12-25</span></div>
+                          <div class="tour-row"><span class="dot cyan"></span>Allowed roles <span class="right">Employee, Admin</span></div>
+                        </div>
+                        <div class="tour-badge-row">
+                          <span class="tour-mini-pill mint">Employee</span>
+                          <span class="tour-mini-pill mint">Administrator</span>
+                          <span class="tour-mini-pill">Contractor</span>
+                          <span class="tour-mini-pill">Visitor</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="tour-note">
+                      <span>&#9679;</span>
+                      <span>Outside schedule, wrong role, missing controller, or a timeout all produce a denial. There is no fallback-to-open path.</span>
+                    </div>
+                  </div>
+
+                  <div class="tour-panel" role="tabpanel" id="tour-panel-2" aria-labelledby="tour-tab-2" data-tour-panel="2" hidden>
+                    <div class="tour-screen-head">
+                      <div>
+                        <h3>Camera gateway</h3>
+                        <p>Existing RTSP and NVR gear, processed locally</p>
+                      </div>
+                      <span class="tour-chip cyan">2 live</span>
+                    </div>
+                    <div class="tour-kpis">
+                      <div class="tour-kpi"><span>Cameras</span><strong>3</strong></div>
+                      <div class="tour-kpi"><span>Ingest</span><strong class="mint">2 FPS</strong></div>
+                      <div class="tour-kpi"><span>Cooldown</span><strong>60s</strong></div>
+                      <div class="tour-kpi"><span>Unknown faces</span><strong>Ignored</strong></div>
+                    </div>
+                    <div class="tour-split">
+                      <div class="tour-panel-card">
+                        <h4>Streams <span>Local network</span></h4>
+                        <div class="tour-door">
+                          <span class="tour-door-icon">L</span>
+                          <div><strong>Lobby north</strong><small>RTSP &middot; 192.168.20.31 &middot; substream</small></div>
+                          <span class="right"><span class="tour-chip">Live</span></span>
+                        </div>
+                        <div class="tour-door">
+                          <span class="tour-door-icon">N</span>
+                          <div><strong>NVR channel 4</strong><small>RTSP &middot; nvr.local &middot; 2 FPS</small></div>
+                          <span class="right"><span class="tour-chip">Live</span></span>
+                        </div>
+                        <div class="tour-door">
+                          <span class="tour-door-icon">E</span>
+                          <div><strong>East hall</strong><small>HTTP MJPEG &middot; reconnecting</small></div>
+                          <span class="right"><span class="tour-chip amber">Retry</span></span>
+                        </div>
+                      </div>
+                      <div class="tour-panel-card">
+                        <h4>Observation <span>Matched only</span></h4>
+                        <div class="tour-identity">
+                          <div class="tour-avatar">JB</div>
+                          <div>
+                            <strong>Joshua Bell</strong>
+                            <small>Observed &middot; Lobby north</small>
+                          </div>
+                          <span class="tour-verdict">Logged</span>
+                        </div>
+                        <div class="tour-list">
+                          <div class="tour-row"><span class="dot cyan"></span>Camera <span class="right">Lobby north</span></div>
+                          <div class="tour-row"><span class="dot cyan"></span>Event type <span class="right">Observation</span></div>
+                          <div class="tour-row"><span class="dot cyan"></span>Next duplicate <span class="right">60s cooldown</span></div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="tour-note cyan">
+                      <span>&#9679;</span>
+                      <span>Frames never leave the gateway. Only enrolled identities create an observation; passersby are not identified or logged.</span>
+                    </div>
+                  </div>
+
+                  <div class="tour-panel" role="tabpanel" id="tour-panel-3" aria-labelledby="tour-tab-3" data-tour-panel="3" hidden>
+                    <div class="tour-screen-head">
+                      <div>
+                        <h3>Audit &amp; mobile</h3>
+                        <p>One event trail, local and on the iPhone</p>
+                      </div>
+                      <span class="tour-chip cyan">Local + hub</span>
+                    </div>
+                    <div class="tour-split">
+                      <div class="tour-panel-card">
+                        <h4>Audit stream <span>All events</span></h4>
+                        <div class="tour-badge-row">
+                          <span class="tour-mini-pill mint">All</span>
+                          <span class="tour-mini-pill">Granted</span>
+                          <span class="tour-mini-pill">Denied</span>
+                          <span class="tour-mini-pill">Cameras</span>
+                          <span class="tour-mini-pill">Doors</span>
+                        </div>
+                        <div class="tour-table">
+                          <div class="tour-table-row tour-table-head"><span>Identity</span><span>Event</span><span>Context</span></div>
+                          <div class="tour-table-row"><strong>Joshua Bell</strong><span>Granted</span><span>Main entrance</span></div>
+                          <div class="tour-table-row"><strong>Joshua Bell</strong><span>Observed</span><span>Lobby north</span></div>
+                          <div class="tour-table-row"><strong>Contractor 04</strong><span>Denied</span><span>Outside schedule</span></div>
+                          <div class="tour-table-row"><strong>Manual unlock</strong><span>Unlocked</span><span>Op One &middot; 09:41</span></div>
+                        </div>
+                        <div class="tour-note">
+                          <span>&#9679;</span>
+                          <span>Manual unlocks are attributed to the local operator. CSV export and date filters are built in.</span>
+                        </div>
+                      </div>
+                      <div class="tour-phone" aria-label="iPhone companion mockup">
+                        <div class="tour-phone-screen">
+                          <div class="tour-phone-notch"></div>
+                          <h4>Who passed by</h4>
+                          <p class="sub">site-main &middot; Face ID locked</p>
+                          <div class="tour-phone-event">
+                            <strong>Joshua Bell</strong>
+                            <small>Granted &middot; Main entrance &middot; now</small>
+                            <div class="tour-badge-row"><span class="tour-mini-pill mint">Granted</span></div>
+                          </div>
+                          <div class="tour-phone-event">
+                            <strong>Lobby north</strong>
+                            <small>Observed &middot; 2m ago</small>
+                            <div class="tour-badge-row"><span class="tour-mini-pill cyan">Observed</span></div>
+                          </div>
+                          <div class="tour-phone-event">
+                            <strong>Test Door</strong>
+                            <small>Manual unlock &middot; Op One &middot; 9m</small>
+                            <div class="tour-badge-row"><span class="tour-mini-pill">Unlocked</span></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="tour-panel" role="tabpanel" id="tour-panel-4" aria-labelledby="tour-tab-4" data-tour-panel="4" hidden>
+                    <div class="tour-screen-head">
+                      <div>
+                        <h3>Hub, license, updates</h3>
+                        <p>The site-owned control plane and commercial layer</p>
+                      </div>
+                      <span class="tour-chip">Pro</span>
+                    </div>
+                    <div class="tour-kpis">
+                      <div class="tour-kpi"><span>Hub</span><strong class="mint">Online</strong></div>
+                      <div class="tour-kpi"><span>Kiosks</span><strong>1 / 4</strong></div>
+                      <div class="tour-kpi"><span>Mobile seats</span><strong>2 / 5</strong></div>
+                      <div class="tour-kpi"><span>Support</span><strong>Nov 2027</strong></div>
+                    </div>
+                    <div class="tour-split">
+                      <div class="tour-panel-card">
+                        <h4>LAN hub <span>hub-2481</span></h4>
+                        <div class="tour-list">
+                          <div class="tour-row"><span class="dot"></span>Signed identity bundles <span class="right mint">verified</span></div>
+                          <div class="tour-row"><span class="dot"></span>Delta sync <span class="right">12s ago</span></div>
+                          <div class="tour-row"><span class="dot"></span>Audit backup <span class="right mint">ready</span></div>
+                          <div class="tour-row"><span class="dot cyan"></span>Mobile pairing <span class="right">2 devices</span></div>
+                        </div>
+                      </div>
+                      <div class="tour-panel-card">
+                        <h4>License &amp; capacity <span>Perpetual</span></h4>
+                        <div class="tour-list">
+                          <div class="tour-row"><span class="dot"></span>Doors <span class="right">3 / 4</span></div>
+                          <div class="tour-row"><span class="dot"></span>Camera streams <span class="right">3 / 8</span></div>
+                          <div class="tour-row"><span class="dot"></span>Kiosks <span class="right">1 / 4</span></div>
+                          <div class="tour-row"><span class="dot"></span>Mobile seats <span class="right">2 / 5</span></div>
+                        </div>
+                        <div class="tour-note cyan">
+                          <span>&#9679;</span>
+                          <span>Capacity packs update the signed offline license. Annual support enables signed in-app updates.</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="tour-controls">
+                <button class="btn btn-ghost btn-sm" type="button" data-tour-prev>Back</button>
+                <button class="btn btn-ghost btn-sm" type="button" data-tour-next>Next step</button>
+                <button class="btn btn-primary btn-sm" type="button" data-tour-play>Play tour</button>
+                <span class="tour-count" data-tour-count>01 / 05</span>
+                <span class="tour-progress" aria-hidden="true">
+                  <i class="active"></i><i></i><i></i><i></i><i></i>
+                </span>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -938,6 +1259,7 @@
           <div class="footer-col">
             <h4>Product</h4>
             <a href="#product">Capabilities</a>
+            <a href="#tour">Product tour</a>
             <a href="#how">How it works</a>
             <a href="spec-sheet.html">Technical spec</a>
             <a href="#security">Security &amp; limits</a>
