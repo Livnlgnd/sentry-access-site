@@ -11,8 +11,25 @@
     contactEmail: 'sales@your-company.com',
     calendlyUrl: '',
     jurisdiction: 'the State of [Your State]',
-    pricing: { currency: 'USD', pilot: 1500, singleSite: 4900, support: 1200 },
-    stripeLinks: { pilot: '', singleSite: '', support: '' },
+    pricing: {
+      currency: 'USD',
+      starter: 750,
+      pro: 1500,
+      annualStarter: 150,
+      annualPro: 300,
+      doorPack: 350,
+      cameraPack: 250,
+      mobilePack: 150,
+    },
+    stripeLinks: {
+      starter: '',
+      pro: '',
+      annualStarter: '',
+      annualPro: '',
+      doorPack: '',
+      cameraPack: '',
+      mobilePack: '',
+    },
   }
 
   const config = { ...defaults, ...(window.SENTRY_SITE_CONFIG || {}) }
@@ -24,23 +41,47 @@
   }
 
   const planMeta = {
-    pilot: {
-      name: 'Paid deployment pilot',
-      priceKey: 'pilot',
+    starter: {
+      name: 'Starter license',
+      priceKey: 'starter',
       blurb:
-        'Two-week single-site pilot with remote commissioning, a success report, and credit toward a single-site license.',
+        'Perpetual single-kiosk license for one site: 2 doors, 4 camera streams, and local audit. No LAN hub or mobile seats.',
     },
-    singleSite: {
-      name: 'Single-site license',
-      priceKey: 'singleSite',
+    pro: {
+      name: 'Pro license',
+      priceKey: 'pro',
       blurb:
-        'Perpetual single-site deployment license with 12 months of updates and email support.',
+        'Perpetual site license: 4 kiosks, 4 doors, 8 camera streams, 5 mobile seats, and the LAN hub.',
     },
-    support: {
-      name: 'Annual support',
-      priceKey: 'support',
+    annualStarter: {
+      name: 'Starter annual support',
+      priceKey: 'annualStarter',
       blurb:
-        'Twelve months of updates, priority email support, and an annual deployment health review.',
+        'Optional annual plan: major version upgrades, encrypted off-site backup, and priority commissioning support.',
+    },
+    annualPro: {
+      name: 'Pro annual support',
+      priceKey: 'annualPro',
+      blurb:
+        'Optional annual plan: major version upgrades, encrypted off-site backup, and priority commissioning support.',
+    },
+    doorPack: {
+      name: 'Extra Door Pack',
+      priceKey: 'doorPack',
+      blurb:
+        'Adds one Axis VAPIX or HTTP relay door binding to a Pro license. Quantity can be adjusted at checkout.',
+    },
+    cameraPack: {
+      name: 'Camera Gateway Pack',
+      priceKey: 'cameraPack',
+      blurb:
+        'Adds four FFmpeg + face-matching camera streams to a Pro license. Quantity can be adjusted at checkout.',
+    },
+    mobilePack: {
+      name: 'iPhone Companion Seat Pack',
+      priceKey: 'mobilePack',
+      blurb:
+        'Adds five paired iPhone audit seats to a Pro license. Quantity can be adjusted at checkout.',
     },
     integrator: {
       name: 'Integrator program',
@@ -113,15 +154,19 @@
       }
     })
 
-    byPrice('pilot').forEach((node) => {
-      node.textContent = money(config.pricing.pilot)
-    })
-    byPrice('singleSite').forEach((node) => {
-      node.textContent = money(config.pricing.singleSite)
-    })
-    byPrice('support').forEach((node) => {
-      node.textContent = money(config.pricing.support)
-    })
+    for (const key of [
+      'starter',
+      'pro',
+      'annualStarter',
+      'annualPro',
+      'doorPack',
+      'cameraPack',
+      'mobilePack',
+    ]) {
+      byPrice(key).forEach((node) => {
+        node.textContent = money(config.pricing[key])
+      })
+    }
 
     const year = document.querySelector('[data-year]')
     if (year) year.textContent = String(new Date().getFullYear())

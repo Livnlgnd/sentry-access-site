@@ -18,9 +18,13 @@ window.SENTRY_SITE_CONFIG = {
 
   pricing: {
     currency: 'USD',
-    pilot: 1500,
-    singleSite: 4900,
-    support: 1200,
+    starter: 750,
+    pro: 1500,
+    annualStarter: 150,
+    annualPro: 300,
+    doorPack: 350,
+    cameraPack: 250,
+    mobilePack: 150,
   },
 
   /**
@@ -28,8 +32,12 @@ window.SENTRY_SITE_CONFIG = {
    * assets/stripe.generated.js automatically.
    */
   stripeLinks: {
-    pilot: '',
-    singleSite: '',
-    support: '',
+    starter: '',
+    pro: '',
+    annualStarter: '',
+    annualPro: '',
+    doorPack: '',
+    cameraPack: '',
+    mobilePack: '',
   },
 }
