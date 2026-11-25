@@ -19,7 +19,6 @@
       annualPro: 300,
       doorPack: 350,
       cameraPack: 250,
-      mobilePack: 150,
     },
     stripeLinks: {
       starter: '',
@@ -28,7 +27,6 @@
       annualPro: '',
       doorPack: '',
       cameraPack: '',
-      mobilePack: '',
     },
   }
 
@@ -45,13 +43,13 @@
       name: 'Starter license',
       priceKey: 'starter',
       blurb:
-        'Perpetual single-kiosk license for one site: 2 doors, 4 camera streams, and local audit. No LAN hub or mobile seats.',
+        'Perpetual single-kiosk license for one site: 2 doors, 4 camera streams, and local audit. No LAN hub.',
     },
     pro: {
       name: 'Pro license',
       priceKey: 'pro',
       blurb:
-        'Perpetual site license: 4 kiosks, 4 doors, 8 camera streams, 5 mobile seats, and the LAN hub.',
+        'Perpetual site license: 4 kiosks, 4 doors, 8 camera streams, and the LAN hub.',
     },
     annualStarter: {
       name: 'Starter annual support',
@@ -76,12 +74,6 @@
       priceKey: 'cameraPack',
       blurb:
         'Adds four FFmpeg + face-matching camera streams to a Pro license. Quantity can be adjusted at checkout.',
-    },
-    mobilePack: {
-      name: 'iPhone Companion Seat Pack',
-      priceKey: 'mobilePack',
-      blurb:
-        'Adds five paired iPhone audit seats to a Pro license. Quantity can be adjusted at checkout.',
     },
     integrator: {
       name: 'Integrator program',
@@ -161,7 +153,6 @@
       'annualPro',
       'doorPack',
       'cameraPack',
-      'mobilePack',
     ]) {
       byPrice(key).forEach((node) => {
         node.textContent = money(config.pricing[key])

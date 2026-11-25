@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Hub, license & updates — Sentry Access</title>
-    <meta name="description" content="Sentry Access LAN hub: signed identity bundles, delta sync, audit ingestion, mobile pairing, backups, perpetual licensing, capacity packs, and signed updates." />
+    <meta name="description" content="Sentry Access LAN hub: signed identity bundles, delta sync, audit ingestion, backups, perpetual licensing, capacity packs, and signed updates." />
     <meta name="theme-color" content="#ffffff" />
     <meta name="color-scheme" content="light" />
     <meta name="referrer" content="strict-origin-when-cross-origin" />
@@ -62,7 +62,7 @@
           <div class="breadcrumbs"><a href="index.html">Home</a><span>/</span><a href="platform.html">Platform</a><span>/</span><span>Hub & licensing</span></div>
           <p class="eyebrow">Hub & licensing</p>
           <h1>A site-owned control plane with a commercial layer that scales.</h1>
-          <p class="lead">The hub distributes identities, consolidates audit, pairs iPhones, and stores backups. Licensing controls capacity offline, and annual support enables signed in-app updates.</p>
+          <p class="lead">The hub distributes identities, consolidates audit, and stores backups. Licensing controls capacity offline, and annual support enables signed in-app updates.</p>
           <div class="product-meta"><span class="tour-chip">LAN hub</span><span class="tour-chip">Signed bundles</span><span class="tour-chip">Perpetual license</span><span class="tour-chip">Signed updates</span></div>
         </div>
       </section><section class="section"><div class="container"><div class="product-body" data-reveal>
@@ -71,20 +71,20 @@
         <li>Fastify API and PostgreSQL on the customer network.</li>
         <li>Device registration with site-scoped tokens.</li>
         <li>ECDSA-signed identity bundles and delta sync.</li>
-        <li>Audit ingestion and mobile pairing codes.</li>
+        <li>Audit ingestion and device health.</li>
         <li>mDNS discovery and a stable hub ID.</li>
         <li>Backups containing the database, keys, license, and enrollment secret.</li>
       </ul>
       <h2>Licensing</h2>
-      <div class="panel"><table class="spec-table"><tbody><tr><th>Starter</th><td>$750 perpetual: 1 kiosk, 2 doors, 4 streams, local audit.</td></tr><tr><th>Pro</th><td>$1,500 perpetual: 4 kiosks, 4 doors, 8 streams, 5 mobile seats, hub.</td></tr><tr><th>Extra Door Pack</th><td>$350 per door.</td></tr><tr><th>Camera Gateway Pack</th><td>$250 per 4 streams.</td></tr><tr><th>iPhone Seat Pack</th><td>$150 per 5 devices.</td></tr><tr><th>Annual support</th><td>Starter $150/yr, Pro $300/yr: major upgrades, encrypted off-site backup, priority commissioning.</td></tr></tbody></table></div>
+      <div class="panel"><table class="spec-table"><tbody><tr><th>Starter</th><td>$750 perpetual: 1 kiosk, 2 doors, 4 streams, local audit.</td></tr><tr><th>Pro</th><td>$1,500 perpetual: 4 kiosks, 4 doors, 8 streams, hub.</td></tr><tr><th>Extra Door Pack</th><td>$350 per door.</td></tr><tr><th>Camera Gateway Pack</th><td>$250 per 4 streams.</td></tr><tr><th>Annual support</th><td>Starter $150/yr, Pro $300/yr: major upgrades, encrypted off-site backup, priority commissioning.</td></tr></tbody></table></div>
       <h2>Offline enforcement</h2>
-      <p>Licenses are ECDSA P-256 signed files verified locally. The hub enforces kiosk and mobile-seat limits; the kiosk enforces door and camera-stream limits. Dropping in a new license upgrades capacity without reinstalling.</p>
+      <p>Licenses are ECDSA P-256 signed files verified locally. The hub enforces kiosk limits; the kiosk enforces door and camera-stream limits. Dropping in a new license upgrades capacity without reinstalling.</p>
       <h2>Signed updates</h2>
       <p>The desktop updater verifies a signed manifest and SHA-256 installer, and only checks while the license has an active support date. Core verification, doors, and audit keep working if support lapses; only updates are blocked.</p>
       <div class="product-note warning">
         <strong>Limits:</strong> the hub is single-node with no HA/failover, central SSO, remote session revocation, or per-event device signatures yet. The Windows installer is unsigned until Azure Trusted Signing is active.
       </div>
-      <div class="next-pages"><a class="next-card" href="platform.html"><span>Back</span><strong>Platform overview</strong><small>See how all five surfaces fit together.</small></a><a class="next-card" href="audit.html"><span>Previous</span><strong>Audit & mobile</strong><small>The history the hub consolidates.</small></a><a class="next-card" href="pricing.html"><span>Commercial</span><strong>Pricing</strong><small>Starter, Pro, packs, and annual support.</small></a></div>
+      <div class="next-pages"><a class="next-card" href="platform.html"><span>Back</span><strong>Platform overview</strong><small>See how all five surfaces fit together.</small></a><a class="next-card" href="audit.html"><span>Previous</span><strong>Audit & analytics</strong><small>The history the hub consolidates.</small></a><a class="next-card" href="pricing.html"><span>Commercial</span><strong>Pricing</strong><small>Starter, Pro, packs, and annual support.</small></a></div>
     </div></div></section><section class="section">
         <div class="container">
           <div class="cta" data-reveal>
@@ -116,7 +116,7 @@
             <a href="live-verification.html">Live verification</a>
             <a href="doors.html">Doors &amp; rules</a>
             <a href="cameras.html">Camera gateway</a>
-            <a href="audit.html">Audit &amp; mobile</a>
+            <a href="audit.html">Audit &amp; analytics</a>
             <a href="hub.html">Hub &amp; licensing</a>
           </div>
           <div class="footer-col">

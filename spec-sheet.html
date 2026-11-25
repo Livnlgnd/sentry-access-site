@@ -3,10 +3,10 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Technical spec sheet — Sentry Access 1.6.2</title>
+    <title>Technical spec sheet — Sentry Access 1.6.3</title>
     <meta
       name="description"
-      content="Sentry Access 1.6.2 technical specification: architecture, Windows kiosk, Axis VAPIX door control, RTSP camera gateway, audit sync, security model, deployment requirements, and limitations."
+      content="Sentry Access 1.6.3 technical specification: architecture, Windows kiosk, Axis VAPIX door control, RTSP camera gateway, audit sync, security model, deployment requirements, and limitations."
     />
     <meta name="theme-color" content="#ffffff" />
     <meta name="referrer" content="strict-origin-when-cross-origin" />
@@ -65,13 +65,13 @@
       <section class="page-hero">
         <div class="container">
           <p class="eyebrow">Technical documentation</p>
-          <h1>Sentry Access 1.6.2 — spec sheet</h1>
+          <h1>Sentry Access 1.6.3 — spec sheet</h1>
           <p>
             Deployment architecture, hardware requirements, security model, and
             current limitations. Prepared for security integrators, MSSPs, and
             client technical reviewers.
           </p>
-          <p class="meta">Document revision 1.6.2 · November 2026 · Print or save as PDF</p>
+          <p class="meta">Document revision 1.6.3 · November 2026 · Print or save as PDF</p>
           <div class="spec-actions no-print">
             <button class="btn btn-primary btn-sm" type="button" data-print>
               Print / save as PDF
@@ -92,7 +92,7 @@
             pulses a door relay only after identity and policy both pass. An
             optional RTSP camera gateway logs observations of already-enrolled
             identities, and an optional LAN hub consolidates identity and audit
-            data for an iPhone companion.
+            data for the site.
           </p>
           <p>
             It is not a certified life-safety system, an emergency-egress
@@ -109,8 +109,7 @@
               <tr><th>Door control</th><td>Electron main process driver. Axis VAPIX I/O port management or generic HTTP relay. Credentials in the OS keystore.</td></tr>
               <tr><th>Camera gateway</th><td>Bundled FFmpeg decodes RTSP/RTSPS/HTTP streams to JPEG frames for local face matching. No frame storage.</td></tr>
               <tr><th>Local audit</th><td>IndexedDB on the kiosk; CSV export; optional sync queue with retry.</td></tr>
-              <tr><th>Hub (optional)</th><td>Fastify API + PostgreSQL on the customer LAN. Device registration, signed identity bundles, delta sync, audit ingestion, mobile pairing, mDNS discovery.</td></tr>
-              <tr><th>Companion (optional)</th><td>iOS app, read-only audit and kiosk inventory. Keychain token, SQLite cache, Face ID lock.</td></tr>
+              <tr><th>Hub (optional)</th><td>Fastify API + PostgreSQL on the customer LAN. Device registration, signed identity bundles, delta sync, audit ingestion, and mDNS discovery.</td></tr>
             </tbody>
           </table>
 
@@ -147,13 +146,12 @@
             <li>Not included: automatic ONVIF discovery, continuous recording, live view, PTZ, audio, LPR, and Ring.</li>
           </ul>
 
-          <h2>6. Audit, sync, and mobile</h2>
+          <h2>6. Audit and sync</h2>
           <ul>
             <li>Event types: access decision, camera observation, and manual door command.</li>
             <li>Fields include identity, employee ID, role, decision, confidence, distance, threshold, reason, provider, camera/door labels, and timestamps.</li>
-            <li>Hub events are stored in PostgreSQL and exposed to the site-scoped mobile API.</li>
+            <li>Hub events are stored in PostgreSQL and exposed to the site-scoped desktop sync API.</li>
             <li>Identity sync uses ECDSA-signed bundles. Device authentication uses a bearer token; per-event device signatures and hash-chaining are not yet implemented.</li>
-            <li>The iOS companion is read-only and does not perform recognition or ingest camera streams.</li>
             <li>CSV export is available from the desktop audit view.</li>
           </ul>
 
@@ -162,7 +160,7 @@
             <li>Renderer Node integration is disabled; context isolation and Chromium sandboxing are enabled.</li>
             <li>The app is served through a private custom protocol with a production CSP. External navigation is blocked.</li>
             <li>Biometric templates and credentials are encrypted at rest. The raw master key never enters the renderer.</li>
-            <li>Controller, camera, and sync credentials are excluded from audit payloads and mobile data.</li>
+            <li>Controller, camera, and sync credentials are excluded from audit payloads and hub data.</li>
             <li>Door decisions are made locally and fail closed on controller error or policy failure.</li>
             <li>Operator roles are enforced locally: operators can verify and review, administrators can change identities, doors, cameras, licensing, and users. Manual unlocks are attributed to the signed-in operator.</li>
             <li>The desktop updater verifies a signed update manifest and the SHA-256 installer before applying an update, and only checks for updates while annual support is active.</li>
@@ -176,7 +174,6 @@
               <tr><th>Network</th><td>Kiosk must reach the Axis controller and camera/NVR streams. Prefer an isolated camera VLAN and a read-only camera account.</td></tr>
               <tr><th>Door hardware</th><td>Fail-safe strike, independent request-to-exit, door position sensor (recommended), fire-alarm release, and adequate power/UPS.</td></tr>
               <tr><th>Hub</th><td>Always-on Windows or Linux host with PostgreSQL. Backups stored on encrypted media.</td></tr>
-              <tr><th>Mobile</th><td>iPhone with a signed Sentry Companion build. Pairing requires the hub on the same network or a reachable hub URL.</td></tr>
             </tbody>
           </table>
 
@@ -187,7 +184,7 @@
             <li>Test an authorized role, an unauthorized role, a closed schedule, and a holiday.</li>
             <li>Disconnect the controller and confirm the decision is denied and audited.</li>
             <li>Confirm mechanical egress works with the software powered off.</li>
-            <li>Pair the iPhone, verify audit delivery, then export a CSV and take a hub backup.</li>
+            <li>Verify audit delivery on the desktop, export a CSV, and take a hub backup.</li>
             <li>Record the site’s retention period, consent process, and deletion request procedure.</li>
           </ul>
 
@@ -198,8 +195,8 @@
             <li>No REX/door-position supervision, held/forced-door alarms, anti-passback, two-person rule, or interlock.</li>
             <li>No automatic ONVIF discovery, Ring support, live view, recording, PTZ, audio, or license-plate recognition.</li>
             <li>Basic challenge-response liveness; no certified PAD or anti-spoofing.</li>
-            <li>No server admin UI, mobile-token revocation UI, or API rate limiting. The audit log is not hash-chained or individually device-signed.</li>
-            <li>Windows installer is not yet Authenticode-signed; the iOS companion requires an Apple signing identity and a macOS build.</li>
+            <li>No server admin UI, device-token revocation UI, or API rate limiting. The audit log is not hash-chained or individually device-signed.</li>
+            <li>Windows installer is not yet Authenticode-signed.</li>
             <li>Biometric consent, signage, retention, DPIA, and deletion obligations remain with the deploying organization.</li>
           </ul>
 
@@ -208,9 +205,9 @@
             Licensing is a perpetual license to use the Software, per site, not
             per user. Starter ($750) includes
             one kiosk, two doors, four camera streams, and local audit. Pro ($1,500)
-            adds the LAN hub, four kiosks, four doors, eight camera streams, and five
-            mobile seats. Capacity packs add doors ($350 each), four camera streams
-            ($250), or five mobile seats ($150) without a new contract or reinstall.
+            adds the LAN hub, four kiosks, four doors, and eight camera streams.
+            Capacity packs add doors ($350 each) or four camera streams ($250)
+            without a new contract or reinstall.
             Annual support is optional at $150/year for Starter and $300/year for Pro
             and covers major upgrades, encrypted off-site backup, and priority
             commissioning support. Hardware, installation, travel, and taxes are
@@ -247,7 +244,7 @@
       <div class="container">
         <div class="footer-bottom">
           <span>© <span data-year>2026</span> <span data-config="legal-entity">Sentry Access</span></span>
-          <span class="status">Document revision 1.6.2</span>
+          <span class="status">Document revision 1.6.3</span>
           <span><a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a></span>
         </div>
       </div>

@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Product tour — Sentry Access</title>
-    <meta name="description" content="Interactive Sentry Access product tour: live verification, doors and rules, camera gateway, audit and mobile, hub and licensing." />
+    <meta name="description" content="Interactive Sentry Access product tour: live verification, doors and rules, camera gateway, audit and analytics, hub and licensing." />
     <meta name="theme-color" content="#ffffff" />
     <meta name="color-scheme" content="light" />
     <meta name="referrer" content="strict-origin-when-cross-origin" />
@@ -173,8 +173,8 @@
               </button>
               <button class="tour-tab" type="button" role="tab" id="tour-tab-3" aria-controls="tour-panel-3" aria-selected="false" data-tour-tab="3">
                 <span class="tour-step">04 / REVIEW</span>
-                <strong>Audit &amp; mobile</strong>
-                <span>Searchable events, operator attribution, and the iPhone stream.</span>
+                <strong>Audit &amp; analytics</strong>
+                <span>Searchable events, operator attribution, and CSV export.</span>
               </button>
               <button class="tour-tab" type="button" role="tab" id="tour-tab-4" aria-controls="tour-panel-4" aria-selected="false" data-tour-tab="4">
                 <span class="tour-step">05 / OPERATE</span>
@@ -353,12 +353,12 @@
                   <div class="tour-panel" role="tabpanel" id="tour-panel-3" aria-labelledby="tour-tab-3" data-tour-panel="3" hidden>
                     <div class="tour-screen-head">
                       <div>
-                        <h3>Audit &amp; mobile</h3>
-                        <p>One event trail, local and on the iPhone</p>
+                        <h3>Audit &amp; analytics</h3>
+                        <p>One event trail, local and on the hub</p>
                       </div>
                       <span class="tour-chip cyan">Local + hub</span>
                     </div>
-                    <div class="tour-split">
+                    <div class="tour-single">
                       <div class="tour-panel-card">
                         <h4>Audit stream <span>All events</span></h4>
                         <div class="tour-badge-row">
@@ -380,27 +380,6 @@
                           <span>Manual unlocks are attributed to the local operator. CSV export and date filters are built in. <a class="tour-more" href="audit.html">Open page &rarr;</a></span>
                         </div>
                       </div>
-                      <div class="tour-phone" aria-label="iPhone companion mockup">
-                        <div class="tour-phone-screen">
-                          <div class="tour-phone-notch"></div>
-                          <h4>Who passed by</h4>
-                          <p class="sub">site-main &middot; Face ID locked</p>
-                          <div class="tour-phone-event">
-                            <strong>Joshua Bell</strong>
-                            <small>Granted &middot; Main entrance &middot; now</small>
-                            <div class="tour-badge-row"><span class="tour-mini-pill mint">Granted</span></div>
-                          </div>
-                          <div class="tour-phone-event">
-                            <strong>Lobby north</strong>
-                            <small>Observed &middot; 2m ago</small>
-                            <div class="tour-badge-row"><span class="tour-mini-pill cyan">Observed</span></div>
-                          </div>
-                          <div class="tour-phone-event">
-                            <strong>Test Door</strong>
-                            <small>Manual unlock &middot; Op One &middot; 9m</small>
-                            <div class="tour-badge-row"><span class="tour-mini-pill">Unlocked</span></div>
-                          </div>
-                        </div>
                       </div>
                     </div>
                   </div>
@@ -416,7 +395,7 @@
                     <div class="tour-kpis">
                       <div class="tour-kpi"><span>Hub</span><strong class="mint">Online</strong></div>
                       <div class="tour-kpi"><span>Kiosks</span><strong>1 / 4</strong></div>
-                      <div class="tour-kpi"><span>Mobile seats</span><strong>2 / 5</strong></div>
+                      <div class="tour-kpi"><span>Doors</span><strong>3 / 4</strong></div>
                       <div class="tour-kpi"><span>Support</span><strong>Nov 2027</strong></div>
                     </div>
                     <div class="tour-split">
@@ -426,7 +405,7 @@
                           <div class="tour-row"><span class="dot"></span>Signed identity bundles <span class="right mint">verified</span></div>
                           <div class="tour-row"><span class="dot"></span>Delta sync <span class="right">12s ago</span></div>
                           <div class="tour-row"><span class="dot"></span>Audit backup <span class="right mint">ready</span></div>
-                          <div class="tour-row"><span class="dot cyan"></span>Mobile pairing <span class="right">2 devices</span></div>
+                          <div class="tour-row"><span class="dot cyan"></span>Device health <span class="right">1 kiosk</span></div>
                         </div>
                       </div>
                       <div class="tour-panel-card">
@@ -435,7 +414,6 @@
                           <div class="tour-row"><span class="dot"></span>Doors <span class="right">3 / 4</span></div>
                           <div class="tour-row"><span class="dot"></span>Camera streams <span class="right">3 / 8</span></div>
                           <div class="tour-row"><span class="dot"></span>Kiosks <span class="right">1 / 4</span></div>
-                          <div class="tour-row"><span class="dot"></span>Mobile seats <span class="right">2 / 5</span></div>
                         </div>
                         <div class="tour-note cyan">
                           <span>&#9679;</span>
@@ -478,7 +456,7 @@
             <a href="live-verification.html">Live verification</a>
             <a href="doors.html">Doors &amp; rules</a>
             <a href="cameras.html">Camera gateway</a>
-            <a href="audit.html">Audit &amp; mobile</a>
+            <a href="audit.html">Audit &amp; analytics</a>
             <a href="hub.html">Hub &amp; licensing</a>
           </div>
           <div class="footer-col">

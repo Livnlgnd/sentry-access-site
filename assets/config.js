@@ -24,7 +24,6 @@ window.SENTRY_SITE_CONFIG = {
     annualPro: 300,
     doorPack: 350,
     cameraPack: 250,
-    mobilePack: 150,
   },
 
   /**
@@ -38,6 +37,5 @@ window.SENTRY_SITE_CONFIG = {
     annualPro: '',
     doorPack: '',
     cameraPack: '',
-    mobilePack: '',
   },
 }

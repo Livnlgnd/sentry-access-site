@@ -63,10 +63,10 @@
           <p class="eyebrow">Platform</p>
           <h1>One local stack for identity, doors, cameras, and audit.</h1>
           <p class="lead">Sentry Access is built for security integrators who need a complete biometric access deployment without putting face templates or door decisions in someone else’s cloud.</p>
-          <div class="product-meta"><span class="tour-chip">Offline-first</span><span class="tour-chip">Axis VAPIX</span><span class="tour-chip">RTSP / NVR</span><span class="tour-chip">iPhone audit</span><span class="tour-chip">Perpetual license</span></div>
+          <div class="product-meta"><span class="tour-chip">Offline-first</span><span class="tour-chip">Axis VAPIX</span><span class="tour-chip">RTSP / NVR</span><span class="tour-chip">On-prem audit</span><span class="tour-chip">Perpetual license</span></div>
         </div>
       </section><section class="section"><div class="container"><div class="product-body" data-reveal>
-      <div class="fact-grid"><div class="fact"><strong>Windows kiosk</strong><span>1:N face verification, liveness, quality gating, and the access decision.</span></div><div class="fact"><strong>Door control</strong><span>Axis A1210/A1601 or HTTP relays with local schedules and role rules.</span></div><div class="fact"><strong>Camera gateway</strong><span>Existing RTSP/NVR streams processed locally for enrolled-only observations.</span></div><div class="fact"><strong>LAN hub</strong><span>Signed identity bundles, delta sync, audit consolidation, and mobile pairing.</span></div><div class="fact"><strong>iPhone companion</strong><span>Read-only audit and kiosk inventory with Face ID protection.</span></div><div class="fact"><strong>Offline license</strong><span>ECDSA-signed capacity, no cloud activation, optional annual updates.</span></div></div>
+      <div class="fact-grid"><div class="fact"><strong>Windows kiosk</strong><span>1:N face verification, liveness, quality gating, and the access decision.</span></div><div class="fact"><strong>Door control</strong><span>Axis A1210/A1601 or HTTP relays with local schedules and role rules.</span></div><div class="fact"><strong>Camera gateway</strong><span>Existing RTSP/NVR streams processed locally for enrolled-only observations.</span></div><div class="fact"><strong>LAN hub</strong><span>Signed identity bundles, delta sync, audit consolidation, and backups.</span></div><div class="fact"><strong>Audit & analytics</strong><span>Searchable access, camera, and door events with CSV export.</span></div><div class="fact"><strong>Offline license</strong><span>ECDSA-signed capacity, no cloud activation, optional annual updates.</span></div></div>
       <h2>Five surfaces, one deployment</h2>
       <p>
         The platform is deliberately split so each part can run where it belongs:
@@ -75,10 +75,10 @@
         distribution and history. If the hub is offline, verification and door
         policy keep working.
       </p>
-      <div class="next-pages"><a class="next-card" href="live-verification.html"><span>Surface 01</span><strong>Live verification</strong><small>Face match, liveness, quality, and the decision.</small></a><a class="next-card" href="doors.html"><span>Surface 02</span><strong>Doors & rules</strong><small>Axis/HTTP relays, schedules, roles, fail-closed behavior.</small></a><a class="next-card" href="cameras.html"><span>Surface 03</span><strong>Camera gateway</strong><small>RTSP/NVR ingest, local matching, enrolled-only events.</small></a><a class="next-card" href="audit.html"><span>Surface 04</span><strong>Audit & mobile</strong><small>Searchable history, operator attribution, iPhone stream.</small></a><a class="next-card" href="hub.html"><span>Surface 05</span><strong>Hub & licensing</strong><small>Signed sync, backups, capacity packs, updates.</small></a><a class="next-card" href="spec-sheet.html"><span>Technical</span><strong>Spec sheet</strong><small>Print the architecture, requirements, and limits.</small></a></div>
+      <div class="next-pages"><a class="next-card" href="live-verification.html"><span>Surface 01</span><strong>Live verification</strong><small>Face match, liveness, quality, and the decision.</small></a><a class="next-card" href="doors.html"><span>Surface 02</span><strong>Doors & rules</strong><small>Axis/HTTP relays, schedules, roles, fail-closed behavior.</small></a><a class="next-card" href="cameras.html"><span>Surface 03</span><strong>Camera gateway</strong><small>RTSP/NVR ingest, local matching, enrolled-only events.</small></a><a class="next-card" href="audit.html"><span>Surface 04</span><strong>Audit & analytics</strong><small>Searchable history, operator attribution, and CSV export.</small></a><a class="next-card" href="hub.html"><span>Surface 05</span><strong>Hub & licensing</strong><small>Signed sync, backups, capacity packs, updates.</small></a><a class="next-card" href="spec-sheet.html"><span>Technical</span><strong>Spec sheet</strong><small>Print the architecture, requirements, and limits.</small></a></div>
       <h2>Deployment modes</h2>
       <p><strong>Single kiosk:</strong> Windows app, local door controller, local audit, and optional cameras. No hub required.</p>
-      <p><strong>LAN site:</strong> add the PostgreSQL hub for identity distribution, audit consolidation, backups, and iPhone pairing.</p>
+      <p><strong>LAN site:</strong> add the PostgreSQL hub for identity distribution, audit consolidation, backups, and local mobile-free access.</p>
       <p><strong>Multi-site:</strong> run one hub per site and use signed licenses to scope capacity and annual support.</p>
       <div class="product-note">
         <strong>Positioning:</strong> this is a local-first product for integrators, not a cloud video platform. It does not claim UL/EN/SOC 2 certification or life-safety suitability.
@@ -114,7 +114,7 @@
             <a href="live-verification.html">Live verification</a>
             <a href="doors.html">Doors &amp; rules</a>
             <a href="cameras.html">Camera gateway</a>
-            <a href="audit.html">Audit &amp; mobile</a>
+            <a href="audit.html">Audit &amp; analytics</a>
             <a href="hub.html">Hub &amp; licensing</a>
           </div>
           <div class="footer-col">
