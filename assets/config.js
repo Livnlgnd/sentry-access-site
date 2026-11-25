@@ -10,7 +10,7 @@
 window.SENTRY_SITE_CONFIG = {
   brand: 'Sentry Access',
   legalEntity: 'Vybelive LLC',
-  contactEmail: 'sales@sentryaccess.net',
+  contactEmail: 'joshua@sentryaccess.net',
   /** Optional scheduling link for deployment calls. */
   calendlyUrl: '',
   /** Stripe Checkout endpoint (hosted sessions via the license worker). */

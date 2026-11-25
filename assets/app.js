@@ -8,7 +8,7 @@
   const defaults = {
     brand: 'Sentry Access',
     legalEntity: 'Vybelive LLC',
-    contactEmail: 'sales@sentryaccess.net',
+    contactEmail: 'joshua@sentryaccess.net',
     calendlyUrl: '',
     checkoutEndpoint:
       'https://keytrack-license.joshua-c77.workers.dev/api/sentry/checkout-session',
