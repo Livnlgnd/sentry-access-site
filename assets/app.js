@@ -10,6 +10,8 @@
     legalEntity: 'Vybelive LLC',
     contactEmail: 'joshua@keyauditpro.com',
     calendlyUrl: '',
+    checkoutEndpoint:
+      'https://keytrack-license.joshua-c77.workers.dev/api/sentry/checkout-session',
     jurisdiction: 'the state in which Vybelive LLC is organized',
     pricing: {
       currency: 'USD',
@@ -296,17 +298,42 @@
     }
   }
 
+  async function startCheckout(planKey, dialog) {
+    const existingLink = config.stripeLinks[planKey]
+    if (typeof existingLink === 'string' && /^https:\/\//i.test(existingLink)) {
+      window.location.assign(existingLink)
+      return
+    }
+
+    if (config.checkoutEndpoint) {
+      try {
+        const response = await fetch(config.checkoutEndpoint, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ plan: planKey }),
+        })
+        const payload = await response.json().catch(() => ({}))
+        if (response.ok && typeof payload.url === 'string') {
+          window.location.assign(payload.url)
+          return
+        }
+      } catch {
+        // Fall through to the contact dialog.
+      }
+    }
+
+    openContact(planKey, dialog)
+  }
+
   function setupCheckout(dialog) {
     document.querySelectorAll('[data-checkout]').forEach((button) => {
       button.addEventListener('click', (event) => {
         event.preventDefault()
         const planKey = button.getAttribute('data-checkout')
-        const link = config.stripeLinks[planKey]
-        if (typeof link === 'string' && /^https:\/\//i.test(link)) {
-          window.location.assign(link)
-          return
-        }
-        openContact(planKey, dialog)
+        button.setAttribute('aria-busy', 'true')
+        Promise.resolve(startCheckout(planKey, dialog)).finally(() => {
+          button.removeAttribute('aria-busy')
+        })
       })
     })
 
@@ -459,9 +486,11 @@
     config,
     openContact: (plan) => openContact(plan, dialog),
     isConfigured: {
-      stripe: Object.values(config.stripeLinks).some((value) =>
-        /^https:\/\//i.test(value || ''),
-      ),
+      stripe:
+        Boolean(config.checkoutEndpoint) ||
+        Object.values(config.stripeLinks).some((value) =>
+          /^https:\/\//i.test(value || ''),
+        ),
       email: !isPlaceholderEmail(config.contactEmail),
     },
   }

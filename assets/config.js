@@ -13,6 +13,9 @@ window.SENTRY_SITE_CONFIG = {
   contactEmail: 'joshua@keyauditpro.com',
   /** Optional scheduling link for deployment calls. */
   calendlyUrl: '',
+  /** Stripe Checkout endpoint (hosted sessions via the license worker). */
+  checkoutEndpoint:
+    'https://keytrack-license.joshua-c77.workers.dev/api/sentry/checkout-session',
   /** Used in the Terms page. Matches the KeyAudit Pro terms. */
   jurisdiction: 'the state in which Vybelive LLC is organized',
 
