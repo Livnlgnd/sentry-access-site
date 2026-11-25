@@ -2,15 +2,15 @@
  * Sentry Access website configuration.
  *
  * Edit this file before publishing. No secret keys belong here.
- * Stripe Payment Links are public URLs and are safe to commit.
+ * Stripe checkout is created by the keytrack-license Cloudflare Worker.
+ * Payment Links are still supported as a public fallback URL.
  *
- * To generate the links in your own Stripe account, see website/README.md
- * or run: npm run site:stripe
+ * See website/README.md for Stripe and deployment details.
  */
 window.SENTRY_SITE_CONFIG = {
   brand: 'Sentry Access',
   legalEntity: 'Vybelive LLC',
-  contactEmail: 'joshua@keyauditpro.com',
+  contactEmail: 'sales@sentryaccess.net',
   /** Optional scheduling link for deployment calls. */
   calendlyUrl: '',
   /** Stripe Checkout endpoint (hosted sessions via the license worker). */
